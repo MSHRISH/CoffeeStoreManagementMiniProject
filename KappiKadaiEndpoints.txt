@@ -20,9 +20,9 @@ Endpoints:
 *Item Endpoints:
 	-Add Item(Authorize Admin and Employee Manager Only)
 	-Add Item Type(Authorize Admin and Employee Manager Only)
-	-Get Item by Id or Name(Authorize Admin, Employee Manager, Employee Barista Only)
-	-Get Availability of Item(Authorize Admin, Employee Manager, Employee Barista Only)
-	-Get All Available Items(Authorize Admin, Employee Manager and Employee Barista Only)
+	-Get Item by Id or Name(Authorize Admin, Employee Manager, Employee Barista Only)(User Too)
+	-Get Availability of Item(Authorize Admin, Employee Manager, Employee Barista and User)
+	-Get All Available Items(Authorize Admin, Employee Manager and Employee Barista Only)(User)
 	-Get All unavailable Items(Authorize Admin, Employee Manager and Employee Barista Only)
 	-Change Availability of an Item(Make it True or False)(Authorize Admin, Employee Manager and Barista Only)
 	-Update Item(Authorize Admin and Employee Manager Only)
@@ -36,5 +36,18 @@ Endpoints:
 
 *Order Endpoints:
 	-Make an Order(Authorize User Only)
-	-Add Items to an Order(Authorize User Only)()
+	-Add List Items {itemid,qty} to an Order(Authorize User Only)(Their Order Only)
+	
+	-Cancel a list of items by users(Not Possible when Deleivered)(Authorize User Only)
+	-Cancel a list of items by Store(Not Possible when Deleivered or Preparation)(Store Only)
+	-Cancel a Order by user (Cancel all items in it that are not deleivered)
+	-Cancel a order by Store (Cancel all items in it that are not deleivered)
+	
+	-Mark a list of items on a order as Perparation(Authorize All but User)
+	-Mark a list of items on a order as Delivered(Authorize All but User)
+	
+	-Get Order Details
+	
+
+	
 	
