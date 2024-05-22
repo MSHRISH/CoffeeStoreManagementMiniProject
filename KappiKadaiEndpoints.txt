@@ -1,0 +1,40 @@
+Endpoints:
+
+(Authorized only for Admin)
+*Admin Endpoints(kinda like owner)
+	-Admin Login
+	-Add Employee(Either Manager or Barista)(By Default their State is Active while registering coz why would 	Admin add a Disabled Employee)
+	-Change Employee State(Disable or Active)
+	-Change User State(Disable or Active)
+	
+
+*Employee Endpoints:
+	-Employee Login
+	-Get Employee by Id or phone or email (Authorize Admin and Employee Manager Only)
+	-Get Employees by Name(Authorize Admin and Employee Manager)
+	-Get All Employees(Authorize Admin and Employee Manager)
+	-Update Employee Details(Authorize Admin, Employee Manager Only)(Employee Manager can update a Barista and 	only themself. Can't update other Employee Manager)(Admin can Update Anyone)
+	-Get User by Id or Email or Phone (Authorize Admin and Employee Manager)
+	-Get Users by Name(Authorize Admin and Employee Manager)
+
+*Item Endpoints:
+	-Add Item(Authorize Admin and Employee Manager Only)
+	-Add Item Type(Authorize Admin and Employee Manager Only)
+	-Get Item by Id or Name(Authorize Admin, Employee Manager, Employee Barista Only)
+	-Get Availability of Item(Authorize Admin, Employee Manager, Employee Barista Only)
+	-Get All Available Items(Authorize Admin, Employee Manager and Employee Barista Only)
+	-Get All unavailable Items(Authorize Admin, Employee Manager and Employee Barista Only)
+	-Change Availability of an Item(Make it True or False)(Authorize Admin, Employee Manager and Barista Only)
+	-Update Item(Authorize Admin and Employee Manager Only)
+
+*User Endpoints:
+	-User Login
+	-User Register(By Default their State is Active)
+	-Update User(Authorize User Only)(User can update their Details only. Can't update other's details).
+	-Get My Details(Authorize User Only)(User can get their details only)
+	-Delete User(Authorize User Only)(Soft Delete)
+
+*Order Endpoints:
+	-Make an Order(Authorize User Only)
+	-Add Items to an Order(Authorize User Only)()
+	
