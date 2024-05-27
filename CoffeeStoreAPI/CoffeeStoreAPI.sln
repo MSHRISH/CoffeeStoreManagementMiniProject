@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeStoreAPI", "CoffeeStoreAPI\CoffeeStoreAPI.csproj", "{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAPI", "CoffeeStoreAPI\CoffeeStoreAPI.csproj", "{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTesting", "RepositoryTesting\RepositoryTesting.csproj", "{A3A60684-64DB-4E2A-9662-469240778D19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A60684-64DB-4E2A-9662-469240778D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A60684-64DB-4E2A-9662-469240778D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A60684-64DB-4E2A-9662-469240778D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A60684-64DB-4E2A-9662-469240778D19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

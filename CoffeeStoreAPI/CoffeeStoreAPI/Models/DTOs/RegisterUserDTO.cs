@@ -1,8 +1,7 @@
 ﻿namespace CoffeeStoreAPI.Models.DTOs
 {
-    public class RegisterUserDTO:User
+    public class RegisterUserDTO:UserBase
     {
         public string Password { get; set; }
-        public int RoleId { get; set; }
     }
 }

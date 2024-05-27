@@ -4,6 +4,7 @@ namespace CoffeeStoreAPI.Iterfaces
 {
     public interface IUserService
     {
-        public Task<RegisterUserDTO> RegisterUser(RegisterUserDTO registerUserDTO);
+        public Task<UserDetails> RegisterUser(RegisterUserDTO registerUserDTO, int RoleId);
+        public Task<TokenDTO> LoginUser(LoginDTO loginDTO);
     }
 }

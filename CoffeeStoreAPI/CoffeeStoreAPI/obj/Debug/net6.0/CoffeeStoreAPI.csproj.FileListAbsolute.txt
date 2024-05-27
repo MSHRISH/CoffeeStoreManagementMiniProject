@@ -67,3 +67,5 @@ C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\obj\D
 C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\obj\Debug\net6.0\CoffeeStoreAPI.pdb
 C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\obj\Debug\net6.0\CoffeeStoreAPI.genruntimeconfig.cache
 C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\obj\Debug\net6.0\ref\CoffeeStoreAPI.dll
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\CoffeeStoreAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

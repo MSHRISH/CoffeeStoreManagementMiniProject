@@ -10,9 +10,9 @@ namespace CoffeeStoreAPI.Repositories
     {
         private readonly CoffeeStoreContext _context;
 
-        public RoleRepository(CoffeeStoreContext context) 
+        public RoleRepository(CoffeeStoreContext context)
         {
-            _context=context;
+            _context = context;
         }
         public async Task<Role> Add(Role item)
         {
@@ -34,7 +34,7 @@ namespace CoffeeStoreAPI.Repositories
 
         public async Task<Role> Get(int key)
         {
-            var role = await _context.Roles.FirstOrDefaultAsync(e => e.RoleId== key);
+            var role = await _context.Roles.FirstOrDefaultAsync(e => e.RoleId == key);
             return role;
         }
 
