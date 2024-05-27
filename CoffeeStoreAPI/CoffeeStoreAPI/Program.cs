@@ -1,3 +1,6 @@
+using CoffeeStoreAPI.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace CoffeeStoreAPI
 {
     public class Program
@@ -12,6 +15,11 @@ namespace CoffeeStoreAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            #region context
+            builder.Services.AddDbContext<CoffeeStoreContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+            #endregion
 
             var app = builder.Build();
 
