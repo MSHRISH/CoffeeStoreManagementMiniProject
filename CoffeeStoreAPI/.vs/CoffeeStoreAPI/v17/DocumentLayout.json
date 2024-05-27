@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\models\\rolemapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\models\\rolemapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\controllers\\userauthenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\controllers\\userauthenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\iterfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\iterfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\execptions\\nosuchcustomerexecption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\execptions\\nosuchcustomerexecption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,28 +42,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RoleMapping.cs",
-              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\RoleMapping.cs",
-              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Models\\RoleMapping.cs",
-              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\RoleMapping.cs",
-              "RelativeToolTip": "CoffeeStoreAPI\\Models\\RoleMapping.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
+              "DocumentIndex": 3,
+              "Title": "NoSuchCustomerExecption.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Execptions\\NoSuchCustomerExecption.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Execptions\\NoSuchCustomerExecption.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Execptions\\NoSuchCustomerExecption.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Execptions\\NoSuchCustomerExecption.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T12:05:43.51Z",
+              "WhenOpened": "2024-05-27T15:34:22.148Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Role.cs",
-              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\Role.cs",
-              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Models\\Role.cs",
-              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\Role.cs",
-              "RelativeToolTip": "CoffeeStoreAPI\\Models\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Iterfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Iterfaces\\IUserService.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Iterfaces\\IUserService.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Iterfaces\\IUserService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T12:05:33.149Z",
+              "WhenOpened": "2024-05-27T15:07:43.587Z",
               "EditorCaption": ""
             },
             {
@@ -66,9 +74,35 @@
               "RelativeDocumentMoniker": "CoffeeStoreAPI\\Services\\UserServices.cs",
               "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Services\\UserServices.cs",
               "RelativeToolTip": "CoffeeStoreAPI\\Services\\UserServices.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAQwD4AAABIAAAA",
+              "ViewState": "AQIAAN4AAAAAAAAAAAAowPMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T08:48:30.334Z",
+              "WhenOpened": "2024-05-27T15:07:36.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserAuthenticationController.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Controllers\\UserAuthenticationController.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Controllers\\UserAuthenticationController.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Controllers\\UserAuthenticationController.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Controllers\\UserAuthenticationController.cs",
+              "ViewState": "AQIAAJwAAAAAAAAAAAAQwLUAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T14:01:17.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Program.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Program.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Program.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Program.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAAAE4AAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T14:02:40.123Z",
               "EditorCaption": ""
             }
           ]
