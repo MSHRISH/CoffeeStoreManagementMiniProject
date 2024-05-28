@@ -89,5 +89,23 @@ namespace CoffeeStoreAPI.Controllers
                 return BadRequest(new ErrorModel(404, ex.Message));
             }
         }
+
+        [HttpDelete("CancelOrderItemByStore")]
+        [Authorize(Policy = "RequireAdminOrManagerRole")]
+        [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> CancelOrderItemByStore(CancelOrderItemDTO cancelOrderItem)
+        {
+            try
+            {
+                var res = await _orderServices.CancelOrderItemByStore(cancelOrderItem);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404,ex.Message));
+            }
+        }
+
     }
 }

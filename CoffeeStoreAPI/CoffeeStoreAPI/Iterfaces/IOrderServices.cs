@@ -13,5 +13,10 @@ namespace CoffeeStoreAPI.Iterfaces
 
         public Task<OrderDetailsDTO> GetMyOrderDetails(int OrderId, int UserID);
 
+        public Task<OrderDetailsDTO> CancelOrderItemByStore(CancelOrderItemDTO cancelOrderItemDTO);
+
+        public Task<OrderDetailsDTO> CancelOrderItemByCustomer(CancelOrderItemDTO cancelOrderItemDTO,int userid);
+
+
     }
 }

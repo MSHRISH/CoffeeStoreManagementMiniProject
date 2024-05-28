@@ -3,6 +3,7 @@ using CoffeeStoreAPI.Iterfaces;
 using CoffeeStoreAPI.Models;
 using CoffeeStoreAPI.Models.DTOs;
 using CoffeeStoreAPI.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoffeeStoreAPI.Services
 {
@@ -133,6 +134,33 @@ namespace CoffeeStoreAPI.Services
                 return await MapToOrderDetailsDTO(order);
             }
             throw new NoSuchOrderFoundExecption();
+        }
+
+        public async Task<OrderDetailsDTO> CancelOrderItemByStore(CancelOrderItemDTO cancelOrderItemDTO)
+        {
+            var orderItem = await _orderItemRepository.Get(new OrderItemKeyDTO {ItemId = cancelOrderItemDTO.ItemId, OrderId=cancelOrderItemDTO.OrderId});
+            if(orderItem == null)
+            {
+                throw new NoSuchOrderItemFoundExecption();
+            }
+            if (orderItem.ItemStatus != "Accepted")
+            {
+                throw new PreparationStartedExecption(); //Store cant cancel the items that are started preparation or delivered.
+            }
+            orderItem.CancellationStatus = "CancelledByStore";
+            orderItem=await _orderItemRepository.Update(orderItem);
+
+            var order=await _orderRepository.Get(cancelOrderItemDTO.OrderId);
+            var item=await _itemRepository.Get(cancelOrderItemDTO.ItemId);
+            order.TotalAmount -= (item.Price * orderItem.Quantity);
+
+            order=await _orderRepository.Update(order);
+            return await MapToOrderDetailsDTO(order);
+        }
+
+        public Task<OrderDetailsDTO> CancelOrderItemByCustomer(CancelOrderItemDTO cancelOrderItemDTO, int userid)
+        {
+            throw new NotImplementedException();
         }
     }
 }
