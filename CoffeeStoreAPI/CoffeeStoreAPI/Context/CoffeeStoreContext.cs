@@ -96,7 +96,7 @@ namespace CoffeeStoreAPI.Context
         }
         private void ConfigureOrderItem(EntityTypeBuilder<OrderItem> builder)
         {
-            builder.HasKey(oi=>new {oi.OrderId,oi.ItemId});
+            builder.HasKey(oi=>oi.OrderItemId);
             
             builder.HasOne(oi => oi.Item)
                 .WithMany(i => i.OrderItems)

@@ -100,7 +100,7 @@ namespace CoffeeStoreAPI
             builder.Services.AddScoped<IRepository<int,Item>, ItemRepository>();
             builder.Services.AddScoped<IRepository<int,ItemType>, ItemTypeRepository>();
             builder.Services.AddScoped<IRepository<int,Order>, OrderRepository>();
-            builder.Services.AddScoped<IRepository<OrderItemKeyDTO,OrderItem>,OrderItemsRepository>();
+            builder.Services.AddScoped<IRepository<int,OrderItem>,OrderItemsRepository>();
             #endregion
 
             #region Services

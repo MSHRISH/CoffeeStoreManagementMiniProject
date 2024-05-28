@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeStoreAPI.Repositories
 {
-    public class OrderItemsRepository : IRepository<OrderItemKeyDTO, OrderItem>
+    public class OrderItemsRepository : IRepository<int, OrderItem>
     {
         private readonly CoffeeStoreContext _context;
 
@@ -23,7 +23,7 @@ namespace CoffeeStoreAPI.Repositories
             return item;
         }
 
-        public async Task<OrderItem> Delete(OrderItemKeyDTO key)
+        public async Task<OrderItem> Delete(int key)
         {
             var orderItem = await Get(key);
             if (orderItem != null)
@@ -34,9 +34,9 @@ namespace CoffeeStoreAPI.Repositories
             throw new NoSuchOrderItemFoundExecption();
         }
 
-        public async Task<OrderItem> Get(OrderItemKeyDTO key)
+        public async Task<OrderItem> Get(int key)
         {
-            var orderItem = await _context.OrderItems.FirstOrDefaultAsync(e => e.OrderId== key.OrderId && e.ItemId==key.ItemId);
+            var orderItem = await _context.OrderItems.FirstOrDefaultAsync(e => e.OrderItemId==key);
             return orderItem;
         }
 
@@ -48,8 +48,7 @@ namespace CoffeeStoreAPI.Repositories
 
         public async Task<OrderItem> Update(OrderItem item)
         {
-            OrderItemKeyDTO key=new OrderItemKeyDTO { ItemId = item.ItemId , OrderId=item.OrderId};
-            var orderItem = await Get(key);
+            var orderItem = await Get(item.OrderItemId);
             if (orderItem != null)
             {
                 _context.Update(item);

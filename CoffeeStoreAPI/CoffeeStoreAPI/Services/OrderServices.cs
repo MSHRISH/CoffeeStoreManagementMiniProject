@@ -10,10 +10,10 @@ namespace CoffeeStoreAPI.Services
     public class OrderServices : IOrderServices
     {
         private readonly IRepository<int, Order> _orderRepository;
-        private readonly IRepository<OrderItemKeyDTO, OrderItem> _orderItemRepository;
+        private readonly IRepository<int, OrderItem> _orderItemRepository;
         private readonly IRepository<int, Item> _itemRepository;
 
-        public OrderServices(IRepository<int,Order> orderRepository, IRepository<OrderItemKeyDTO,OrderItem> orderItemRepository, IRepository<int,Item> itemRepository) 
+        public OrderServices(IRepository<int,Order> orderRepository, IRepository<int,OrderItem> orderItemRepository, IRepository<int,Item> itemRepository) 
         {
             _orderRepository=orderRepository;
             _orderItemRepository=orderItemRepository;
@@ -44,9 +44,22 @@ namespace CoffeeStoreAPI.Services
                 throw new ItemNotAvailableExecption();
             }
 
-            //MapDTO to OrderITem
-            OrderItem orderitem=MapDTOToOrderItem(orderItemDTO);
-            orderitem=await _orderItemRepository.Add(orderitem);
+            //Check If the item is already ordered, if yes then update quantity or add a new orderitem
+            var orderItems = await _orderItemRepository.GetAll();
+            var orderItem = orderItems.FirstOrDefault(oi => oi.OrderId == orderItemDTO.OrderId && oi.ItemId==orderItemDTO.ItemId && oi.CancellationStatus=="NULL");
+
+            if(orderItem!=null)
+            {
+                orderItem.Quantity += orderItemDTO.Quantity;
+                orderItem=await _orderItemRepository.Update(orderItem);
+            }
+            else
+            {
+                //MapDTO to OrderITem
+                OrderItem orderitem = MapDTOToOrderItem(orderItemDTO);
+                orderitem = await _orderItemRepository.Add(orderitem);
+            }
+            
 
             //Update Bill amount 
             order.TotalAmount += item.Price * orderItemDTO.Quantity;
@@ -93,6 +106,7 @@ namespace CoffeeStoreAPI.Services
         private OrderItemDetailsDTO MapToOrderItemDetailsDTO(OrderItem orderItem)
         {
             OrderItemDetailsDTO orderItemDTO=new OrderItemDetailsDTO();
+            orderItemDTO.OrderItemId = orderItem.OrderItemId;
             orderItemDTO.ItemId = orderItem.ItemId;
             orderItemDTO.Quantity = orderItem.Quantity;
             orderItemDTO.ItemStatus = orderItem.ItemStatus;
@@ -138,7 +152,7 @@ namespace CoffeeStoreAPI.Services
 
         public async Task<OrderDetailsDTO> CancelOrderItemByStore(CancelOrderItemDTO cancelOrderItemDTO)
         {
-            var orderItem = await _orderItemRepository.Get(new OrderItemKeyDTO {ItemId = cancelOrderItemDTO.ItemId, OrderId=cancelOrderItemDTO.OrderId});
+            var orderItem = await _orderItemRepository.Get(cancelOrderItemDTO.OrderItemId);
             if(orderItem == null)
             {
                 throw new NoSuchOrderItemFoundExecption();
@@ -150,17 +164,41 @@ namespace CoffeeStoreAPI.Services
             orderItem.CancellationStatus = "CancelledByStore";
             orderItem=await _orderItemRepository.Update(orderItem);
 
-            var order=await _orderRepository.Get(cancelOrderItemDTO.OrderId);
-            var item=await _itemRepository.Get(cancelOrderItemDTO.ItemId);
+            var order=await _orderRepository.Get(orderItem.OrderId);
+            var item=await _itemRepository.Get(orderItem.ItemId);
             order.TotalAmount -= (item.Price * orderItem.Quantity);
 
             order=await _orderRepository.Update(order);
             return await MapToOrderDetailsDTO(order);
         }
 
-        public Task<OrderDetailsDTO> CancelOrderItemByCustomer(CancelOrderItemDTO cancelOrderItemDTO, int userid)
+        public async Task<OrderDetailsDTO> CancelOrderItemByCustomer(CancelOrderItemDTO cancelOrderItemDTO, int userid)
         {
-            throw new NotImplementedException();
+            var orderitem=await _orderItemRepository.Get(cancelOrderItemDTO.OrderItemId);
+            if(orderitem == null)
+            {
+                throw new NoSuchOrderItemFoundExecption();
+            }
+            if (orderitem.ItemStatus == "Deleivered")
+            {
+                throw new ItemDeleiveredExecption();
+            }
+            var order=await _orderRepository.Get(orderitem.OrderId);
+            if (order.UserId != userid)
+            {
+                throw new NoSuchOrderItemFoundExecption();
+            }
+            
+            orderitem.CancellationStatus = "CancelledByCustomer";
+            orderitem=await _orderItemRepository.Update(orderitem);
+
+            var item = await _itemRepository.Get(orderitem.ItemId);
+            if (orderitem.ItemStatus == "Accepted")
+            {
+                order.TotalAmount -= (item.Price * orderitem.Quantity);
+            }
+            order=await _orderRepository.Update(order);
+            return await MapToOrderDetailsDTO(order);
         }
     }
 }
