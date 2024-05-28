@@ -36,5 +36,58 @@ namespace CoffeeStoreAPI.Controllers
                 return BadRequest(new ErrorModel(404, ex.Message));
             }
         }
+
+        [HttpPost("AddToAnOrder")]
+        [Authorize(Policy = "RequireCustomerRole")]
+        [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> AddToAnOrder(AddOrderItemDTO orderItemDTO)
+        {
+            try
+            {
+                int.TryParse(User.FindFirst(ClaimTypes.Name)?.Value, out int parsedUserId);
+                var res = await _orderServices.AddToOrder(orderItemDTO, parsedUserId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404,ex.Message));
+            }
+        }
+
+        [HttpGet("GetOrderById/{orderid}")]
+        [Authorize(Policy = "RequireStoreEmployee")]
+        [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> GetOrderById(int orderid)
+        {
+            try
+            {
+                var res = await _orderServices.GetOrderDetails(orderid);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+        [HttpGet("GetMyOrderDetails/{orderid}")]
+        [Authorize(Policy = "RequireCustomerRole")]
+        [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> GetMyOrderDetails(int orderid)
+        {
+            try
+            {
+                int.TryParse(User.FindFirst(ClaimTypes.Name)?.Value, out int parsedUserId);
+                var res = await _orderServices.GetMyOrderDetails(orderid, parsedUserId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
     }
 }

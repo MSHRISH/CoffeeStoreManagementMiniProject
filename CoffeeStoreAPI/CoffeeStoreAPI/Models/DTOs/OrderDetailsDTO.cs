@@ -8,6 +8,6 @@
         public double TotalAmount { get; set; }
         public DateTime OrderedOn { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItemDetailsDTO> OrderItems { get; set; }
     }
 }
