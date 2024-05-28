@@ -27,7 +27,7 @@ namespace CoffeeStoreAPI.Repositories
             if (role != null)
             {
                 _context.Remove(role);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             throw new NoSuchRoleFoundExecption();
         }
@@ -50,7 +50,7 @@ namespace CoffeeStoreAPI.Repositories
             if (role != null)
             {
                 _context.Update(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return role;
             }
             throw new NoSuchRoleFoundExecption();

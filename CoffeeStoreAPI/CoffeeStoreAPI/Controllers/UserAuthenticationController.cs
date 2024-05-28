@@ -4,6 +4,7 @@ using CoffeeStoreAPI.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CoffeeStoreAPI.Controllers
 {
@@ -134,6 +135,26 @@ namespace CoffeeStoreAPI.Controllers
             }
         }
 
+        [HttpGet("GetMyDetails")]
+        [Authorize]
+        [ProducesResponseType(typeof(UserDetails), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<UserDetails>> GetMyDetails()
+        {
+            try
+            {
+                int.TryParse(User.FindFirst(ClaimTypes.Name)?.Value, out int parsedUserId);
+                var res = await _userService.GetUserById(parsedUserId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+            
+
+        }
+
         [HttpGet("GetAllManagers")]
         [Authorize(Policy ="RequireAdminRole")]
         [ProducesResponseType(typeof(UserDetails), StatusCodes.Status200OK)]
@@ -187,5 +208,23 @@ namespace CoffeeStoreAPI.Controllers
                 return BadRequest(new ErrorModel(404, ex.Message));
             }
         }
+
+        [HttpPost("ChangeUserStatus")]
+        [Authorize(Policy = "RequireAdminRole")]
+        [ProducesResponseType(typeof(UserDetails),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UserDetails>> ChangeStateOfUser(int id)
+        {
+            try
+            {
+                var res = await _userService.ChangeUserState(id);
+                return Ok(res); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404,ex.Message));
+            }
+        }
+
     }
 }

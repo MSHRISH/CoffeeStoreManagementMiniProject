@@ -104,8 +104,11 @@ namespace CoffeeStoreAPI.Services
             userDetails.Email=user.Email;
             userDetails.Phone=user.Phone;
             userDetails.Status = user.Status;
-
-            if (RoleId == 2)
+            if (RoleId == 1)
+            {
+                userDetails.Role = "Admin";
+            }
+            else if (RoleId == 2)
             {
                 userDetails.Role = "Manager";
             }
@@ -137,97 +140,7 @@ namespace CoffeeStoreAPI.Services
             userAuthentication.PasswordHash= hMACSHA.ComputeHash(Encoding.UTF8.GetBytes(registerUserDTO.Password));
             return userAuthentication;
         }
-
-        public async Task<UserDetails> GetManagerById(int id)
-        {
-            try
-            {
-                var user = await _userRepository.Get(id);
-                var rolemapping = await _rolemappingRepository.Get(id);
-                if (rolemapping.RoleId == 2)
-                {
-                    var userDetail = MapToUserDetails(user, 2);
-                    return userDetail;
-                }
-            }
-            catch (Exception ex) { }
-            throw new NoSuchManagerFoundExecption();
-        }
-
-        public async Task<UserDetails> GetBaristaById(int id)
-        {
-            try
-            {
-                var user = await _userRepository.Get(id);
-                var rolemapping = await _rolemappingRepository.Get(id);
-                if (rolemapping.RoleId == 3)
-                {
-                    var userDetail = MapToUserDetails(user, 3);
-                    return userDetail;
-                }
-            }
-            catch (Exception ex){}
-            throw new NoSuchBaristaFoundExecption();
-        }
-
-        public async Task<List<UserDetails>> GetAllManagers()
-        {
-            var users=await _userRepository.GetAll();
-            var rolemappings=await _rolemappingRepository.GetAll();
-
-            var Managers = from user in users
-                           join rolemapping in rolemappings on user.Id equals rolemapping.UserId
-                           where rolemapping.RoleId == 2
-                           select MapToUserDetails(user, 2);
-                          
-            return Managers.ToList();
-        }
-
-        public async Task<List<UserDetails>> GetAllBaristas()
-        {
-
-            var users = await _userRepository.GetAll();
-            var rolemappings = await _rolemappingRepository.GetAll();
-
-            var Baristas= from user in users
-                           join rolemapping in rolemappings on user.Id equals rolemapping.UserId
-                           where rolemapping.RoleId == 3
-                           select MapToUserDetails(user, 3);
-
-            return Baristas.ToList();
-        }
-
-        public async Task<List<UserDetails>> GetAllCustomers()
-        {
-
-            var users = await _userRepository.GetAll();
-            var rolemappings = await _rolemappingRepository.GetAll();
-
-            var Customers = from user in users
-                           join rolemapping in rolemappings on user.Id equals rolemapping.UserId
-                           where rolemapping.RoleId == 4
-                           select MapToUserDetails(user, 4);
-
-            return Customers.ToList();
-        }
-
-        public async Task<UserDetails> GetCustomerById(int id)
-        {
-            try
-            {
-                var user = await _userRepository.Get(id);
-                var rolemapping = await _rolemappingRepository.Get(id);
-                if (rolemapping.RoleId == 4)
-                {
-                    var userDetail = MapToUserDetails(user, 4);
-                    return userDetail;
-                }
-            }
-            catch (Exception ex) { }
-            throw new NoSuchCustomerExecption();
-        }
-
-        public async Task<UserDetails> GetUserById(int id, int RoleId)
+        public async Task<UserDetails> GetUserById(int id, int ? RoleId=null)
         {
             var user = await _userRepository.Get(id);
             if(user == null)
@@ -235,12 +148,22 @@ namespace CoffeeStoreAPI.Services
                 throw new NoSuchUserException();
             }
             var rolemapping = await _rolemappingRepository.Get(id);
-            if (rolemapping.RoleId == RoleId)
+            var userDetail = MapToUserDetails(user, rolemapping.RoleId);
+            if (RoleId.HasValue)
             {
-                var userDetail = MapToUserDetails(user, RoleId);
-                return userDetail;
-            }         
-            throw new NoSuchUserException();
+                if (rolemapping.RoleId == RoleId)
+                {
+                    
+                    return userDetail;
+                }
+                else
+                {
+                    throw new NoSuchUserException();
+                }
+            }
+            return userDetail;
+                 
+            
         }
 
         public async Task<List<UserDetails>> GetAllUsersByRole(int RoleId)
@@ -254,6 +177,27 @@ namespace CoffeeStoreAPI.Services
                             select MapToUserDetails(user, RoleId);
 
             return Users.ToList();
+        }
+
+        public async Task<UserDetails> ChangeUserState(int id)
+        {
+            var user=await _userRepository.Get(id);
+            if( user == null)
+            {
+                throw new NoSuchUserException();
+            }
+            if (user.Status == "Active")
+            {
+                user.Status = "Disabled";
+            }
+            else
+            {
+                user.Status = "Active";
+            }
+            user=await _userRepository.Update(user);
+            var userRole=await _rolemappingRepository.Get(id);
+            var userdetail = MapToUserDetails(user,userRole.RoleId);
+            return userdetail;
         }
     }
 }

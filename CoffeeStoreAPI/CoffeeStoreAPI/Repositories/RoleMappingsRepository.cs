@@ -27,7 +27,7 @@ namespace CoffeeStoreAPI.Repositories
             if (roleMapping!= null)
             {
                 _context.Remove(roleMapping);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             throw new UnableToAssignRoleExecption();
         }
@@ -50,7 +50,7 @@ namespace CoffeeStoreAPI.Repositories
             if (roleMapping!= null)
             {
                 _context.Update(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return roleMapping;
             }
             throw new UnableToAssignRoleExecption();

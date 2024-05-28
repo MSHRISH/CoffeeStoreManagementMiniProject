@@ -27,7 +27,7 @@ namespace CoffeeStoreAPI.Repositories
             if (item != null)
             {
                 _context.Remove(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             throw new NoSuchItemExecption();
         }
@@ -50,7 +50,7 @@ namespace CoffeeStoreAPI.Repositories
             if (item != null)
             {
                 _context.Update(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return item;
             }
             throw new NoSuchItemExecption();

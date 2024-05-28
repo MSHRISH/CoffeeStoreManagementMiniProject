@@ -26,7 +26,7 @@ namespace CoffeeStoreAPI.Repositories
             if (user != null)
             {
                 _context.Remove(user);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             throw new NoSuchUserException();
         }
@@ -49,7 +49,7 @@ namespace CoffeeStoreAPI.Repositories
             if (user != null)
             {
                 _context.Update(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return user;
             }
             throw new NoSuchUserException();

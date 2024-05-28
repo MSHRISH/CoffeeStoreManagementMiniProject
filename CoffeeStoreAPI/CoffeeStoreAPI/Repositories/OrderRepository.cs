@@ -27,7 +27,7 @@ namespace CoffeeStoreAPI.Repositories
             if (order!= null)
             {
                 _context.Remove(order);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             throw new NoSuchOrderFoundExecption();
         }
@@ -50,7 +50,7 @@ namespace CoffeeStoreAPI.Repositories
             if (order!= null)
             {
                 _context.Update(item);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return order;
             }
             throw new NoSuchOrderFoundExecption();

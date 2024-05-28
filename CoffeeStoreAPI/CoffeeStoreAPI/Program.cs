@@ -79,6 +79,10 @@ namespace CoffeeStoreAPI
                 options.AddPolicy("RequireAdminOrManagerRole", policy =>
            policy.RequireAssertion(context =>
                context.User.IsInRole("Admin") || context.User.IsInRole("Manager")));
+
+                options.AddPolicy("RequireStoreEmployee", policy =>
+           policy.RequireAssertion(context =>
+               context.User.IsInRole("Admin") || context.User.IsInRole("Barista")||context.User.IsInRole("Manager")));
             }
          );
             #endregion
@@ -102,6 +106,7 @@ namespace CoffeeStoreAPI
             #region Services
             builder.Services.AddScoped<IUserService,UserServices>();
             builder.Services.AddScoped<ITokenServices, TokenServices>();
+            builder.Services.AddScoped<IItemServices, ItemServices>();
             #endregion
             var app = builder.Build();
 
