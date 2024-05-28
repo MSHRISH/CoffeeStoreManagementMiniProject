@@ -107,6 +107,7 @@ namespace CoffeeStoreAPI
             builder.Services.AddScoped<IUserService,UserServices>();
             builder.Services.AddScoped<ITokenServices, TokenServices>();
             builder.Services.AddScoped<IItemServices, ItemServices>();
+            builder.Services.AddScoped<IOrderServices, OrderServices>();
             #endregion
             var app = builder.Build();
 

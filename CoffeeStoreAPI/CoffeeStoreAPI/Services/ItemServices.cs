@@ -68,7 +68,7 @@ namespace CoffeeStoreAPI.Services
         {
             var items=await _itemRepository.GetAll();
             var itemTypes = await _itemTypeRepository.GetAll();
-                     
+            
             var ItemsDetails = (from item in items
                                join itemtype in itemTypes on item.ItemTypeId equals itemtype.TypeId
                                select MapToItemDetailsDTO(item,itemtype.TypeName)).ToList();
