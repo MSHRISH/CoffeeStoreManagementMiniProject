@@ -33,6 +33,10 @@ namespace CoffeeStoreAPI.Services
             {
                 throw new NoSuchOrderFoundExecption();
             }
+            if (order.OrderStatus != "Open")
+            {
+                throw new OrderNotOpenExecption();
+            }
             
             //Check if the item exist and is available
             var item=await _itemRepository.Get(orderItemDTO.ItemId);
@@ -229,6 +233,35 @@ namespace CoffeeStoreAPI.Services
             orderItem=await _orderItemRepository.Update(orderItem);
             return MapToOrderItemDetailsDTO(orderItem);
             
+        }
+
+        //Incomplete
+        //Cancels all the orderitems that are accepted. Marks the order as cancelled by store and stops accepting orderitems.
+        public async Task<OrderDetailsDTO> CancelOrderByStore(int orderId)
+        {
+            var order=await _orderRepository.Get(orderId);
+            if( order == null)
+            {
+                throw new NoSuchOrderFoundExecption();
+            }
+
+            var AllOrderItems=await _orderItemRepository.GetAll();
+            var OrderItems= from orderitem in AllOrderItems
+                            where orderitem.OrderId == orderId
+                            select orderitem;
+            foreach(var item in OrderItems)
+            {
+                if(item.CancellationStatus == "NULL" && item.ItemStatus== "Accepted")
+                {
+                    item.CancellationStatus = "CancelledByStore";
+                    await _orderItemRepository.Update(item);
+                    var itemDetails=await _itemRepository.Get(item.ItemId);
+                    order.TotalAmount -= (item.Quantity * itemDetails.Price);
+                }
+            }
+            order.OrderStatus = "CancelledByStore";
+            order =await _orderRepository.Update(order);
+            return await MapToOrderDetailsDTO(order);
         }
     }
 }
