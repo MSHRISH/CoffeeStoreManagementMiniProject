@@ -125,5 +125,57 @@ namespace CoffeeStoreAPI.Controllers
             }
         }
 
+        [HttpPut("PreparationStartedOrderItem/{orderitemid}")]
+        [Authorize(Policy = "RequireStoreEmployee")]
+        [ProducesResponseType(typeof(OrderItemDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderItemDetailsDTO>> PrepareOrderItem(int orderitemid)
+        {
+            try
+            {
+                var res = await _orderServices.ChangeOrderItemStatus(orderitemid, 1);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+        [HttpPut("DeleiveredOrderItem/{orderitemid}")]
+        [Authorize(Policy = "RequireStoreEmployee")]
+        [ProducesResponseType(typeof(OrderItemDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderItemDetailsDTO>> DeleiverOrderItem(int orderitemid)
+        {
+            try
+            {
+                var res = await _orderServices.ChangeOrderItemStatus(orderitemid, 2);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+        [HttpPut("AcceptedOrderItem/{orderitemid}")]
+        [Authorize(Policy = "RequireStoreEmployee")]
+        [ProducesResponseType(typeof(OrderItemDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderItemDetailsDTO>> AcceptOrderItem(int orderitemid)
+        {
+            try
+            {
+                var res = await _orderServices.ChangeOrderItemStatus(orderitemid, 0);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+
     }
 }

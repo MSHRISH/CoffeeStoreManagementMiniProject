@@ -3,6 +3,7 @@ using CoffeeStoreAPI.Iterfaces;
 using CoffeeStoreAPI.Models;
 using CoffeeStoreAPI.Models.DTOs;
 using CoffeeStoreAPI.Repositories;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoffeeStoreAPI.Services
@@ -199,6 +200,35 @@ namespace CoffeeStoreAPI.Services
             }
             order=await _orderRepository.Update(order);
             return await MapToOrderDetailsDTO(order);
+        }
+
+        public async Task<OrderItemDetailsDTO> ChangeOrderItemStatus(int orderItemId, int status)
+        {
+            var orderItem=await _orderItemRepository.Get(orderItemId);
+            if( orderItem == null)
+            {
+                throw new NoSuchOrderItemFoundExecption();
+            }
+            if (orderItem.CancellationStatus != "NULL")
+            {
+                throw new ItemCancelledExecption();
+            }
+
+            switch (status) 
+            {
+                case 0:
+                    orderItem.ItemStatus = "Accepted";
+                    break;
+                case 1:
+                    orderItem.ItemStatus = "Preparation";
+                    break;
+                case 2:
+                    orderItem.ItemStatus = "Deleivered";
+                    break;
+            }   
+            orderItem=await _orderItemRepository.Update(orderItem);
+            return MapToOrderItemDetailsDTO(orderItem);
+            
         }
     }
 }

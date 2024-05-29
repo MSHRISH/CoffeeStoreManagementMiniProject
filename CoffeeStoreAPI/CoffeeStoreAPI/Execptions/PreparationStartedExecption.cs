@@ -8,7 +8,7 @@ namespace CoffeeStoreAPI.Execptions
         public string message;
         public PreparationStartedExecption()
         {
-            message = "Cannot Cancel Item, Preparation Already Started";
+            message = "Cannot Cancel Item, Preparation Already Started or already deleivered";
         }
 
         public override string Message =>message;
