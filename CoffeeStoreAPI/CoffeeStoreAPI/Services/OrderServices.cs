@@ -244,7 +244,10 @@ namespace CoffeeStoreAPI.Services
             {
                 throw new NoSuchOrderFoundExecption();
             }
-
+            if(order.OrderStatus != "Open")
+            {
+                throw new UnableToCancelOrderExecption();
+            }
             var AllOrderItems=await _orderItemRepository.GetAll();
             var OrderItems= from orderitem in AllOrderItems
                             where orderitem.OrderId == orderId
@@ -261,6 +264,40 @@ namespace CoffeeStoreAPI.Services
             }
             order.OrderStatus = "CancelledByStore";
             order =await _orderRepository.Update(order);
+            return await MapToOrderDetailsDTO(order);
+        }
+
+        public async Task<OrderDetailsDTO> CancellOrderByCustomer(int orderId,int userId)
+        {
+            var order= await _orderRepository.Get(orderId);
+            if (order == null||order.UserId!=userId)
+            {
+                throw new NoSuchOrderFoundExecption();
+            }
+            if(order.OrderStatus != "Open")
+            {
+                throw new UnableToCancelOrderExecption();
+            }
+
+            var AllOrderItems = await _orderItemRepository.GetAll();
+            var OrderItems = from orderitem in AllOrderItems
+                             where orderitem.OrderId == orderId
+                             select orderitem;
+            foreach(var item in OrderItems)
+            {
+                if (item.CancellationStatus == "NULL")
+                {
+                    item.CancellationStatus = "CancelledByCustomer";
+                    await _orderItemRepository.Update(item);
+                    if (item.ItemStatus == "Accepted")
+                    {
+                        var itemDetails = await _itemRepository.Get(item.ItemId);
+                        order.TotalAmount -= (item.Quantity * itemDetails.Price);
+                    }
+                }
+            }
+            order.OrderStatus = "CancelledByCustomer";
+            order = await _orderRepository.Update(order);
             return await MapToOrderDetailsDTO(order);
         }
     }
