@@ -1,0 +1,7 @@
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.csproj.AssemblyReference.cache
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.AssemblyInfoInputs.cache
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.AssemblyInfo.cs
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.csproj.CoreCompileInputs.cache
+C:\Presidio\CoffeeStoreManagementMiniProject\CoffeeStoreAPI\ItemServiceTesting\obj\Debug\net6.0\ItemServiceTesting.sourcelink.json

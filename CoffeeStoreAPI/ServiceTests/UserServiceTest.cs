@@ -68,8 +68,58 @@ namespace ServiceTests
             var auth = userService.LoginUser(new LoginDTO { UserId = res.UserId, Password = "string" });
 
             //Assert
-            Assert.That(res, Is.Not.Null);
+            Assert.That(auth, Is.Not.Null);
+        }
 
+        [Test]
+        public async Task GetUserById()
+        {
+            //Arrange
+            RegisterUserDTO userDTO = new RegisterUserDTO { Name = "testUserCustomer1", Email = "string", Phone = "1231231233", Password = "string" };
+            RegisterUserDTO userDTO2 = new RegisterUserDTO { Name = "testUserCustomer2", Email = "string", Phone = "1231231233", Password = "string" };
+
+            //Action
+            //Customer
+            var res = await userService.RegisterUser(userDTO, 4);
+            //Manager
+            res = await userService.RegisterUser(userDTO2, 2);
+
+            var result=await userService.GetUserById(res.UserId);
+
+            //Assert
+            Assert.That(userDTO2.Name, Is.EqualTo(result.Name));
+        }
+        [Test]
+        public async Task GetAllUsers()
+        {
+            //Arrange
+            RegisterUserDTO userDTO = new RegisterUserDTO { Name = "testUserCustomer1", Email = "string", Phone = "1231231233", Password = "string" };
+            RegisterUserDTO userDTO2 = new RegisterUserDTO { Name = "testUserCustomer2", Email = "string", Phone = "1231231233", Password = "string" };
+
+            //Action
+            //Customer
+            var res = await userService.RegisterUser(userDTO, 4);
+            //Manager
+            res = await userService.RegisterUser(userDTO2, 2);
+
+            var result = await userService.GetAllUsersByRole(2);
+
+            Assert.That(result.Count() , Is.EqualTo(1));
+        }
+        [Test]
+        public async Task ChangeUserStatus()
+        {
+            //Arrange
+            RegisterUserDTO userDTO = new RegisterUserDTO { Name = "testUserCustomer1", Email = "string", Phone = "1231231233", Password = "string" };
+
+            //Action
+            //Customer
+            var res = await userService.RegisterUser(userDTO, 4);
+
+            var result=await userService.ChangeUserState(res.UserId);
+
+            //Assert
+            Assert.That(result.Status, Is.EqualTo("Disabled"));
         }
     }
 }

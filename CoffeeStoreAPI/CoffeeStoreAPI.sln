@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAPI", "CoffeeStoreAPI\CoffeeStoreAPI.csproj", "{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{96F82B3C-68C7-4851-A5A4-3BBD31C4463E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{96F82B3C-68C7-4851-A5A4-3BBD31C4463E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
