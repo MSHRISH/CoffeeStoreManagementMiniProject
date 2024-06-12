@@ -37,7 +37,7 @@
         <div>
             <div class="absolute flex flex-col justify-center items-center space-y-3 bg-red-500 top-[2px] bottom-[2px] left-[2px] right-[2px]">
                 <div>
-                    <h4 class="playfair-display-title text-2xl mt-1 text-[snow]">Sign Up</h4>
+                    <h4 class="playfair-display-title text-2xl mt-1">Sign Up</h4>
                 </div>
                 <div>
                     <form  id="signup-form">
@@ -45,8 +45,8 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/user.svg">
                             </span>
-                            <input type="text" id="name-input" required placeholder="Name" pattern="^[A-Za-z]{3,50}$" class="peer bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="name-error" class="mb-2 absolute hidden text-blue-700 text-sm">
+                            <input type="text" id="name-input" required placeholder="Name" pattern="^[A-Za-z]{3,50}$" class="peer bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-slate-400 placeholder:text-left py-2 pl-9 pr-3">
+                            <p id="name-error" class="mb-2 absolute hidden text-red-800 text-sm">
                                 Please provide a valid name.
                             </p>
                         </div>
@@ -54,8 +54,8 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/email.svg">
                             </span>
-                            <input type="email" id="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="email-error" class="mb-2 absolute hidden text-blue-700 text-sm">
+                            <input type="email" id="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-slate-400 placeholder:text-left py-2 pl-9 pr-3">
+                            <p id="email-error" class="mb-2 absolute hidden text-red-800 text-sm">
                                 Please provide a valid email.
                             </p>
                         </div>
@@ -63,8 +63,8 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/phone.svg">
                             </span>
-                            <input type="text" id="phone-input" pattern="^\+?[1-9]\d{1,14}$" required placeholder="Phone Number" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="phone-error" class="mb-2 absolute hidden text-blue-700 text-sm">
+                            <input type="text" id="phone-input" pattern="^\+?[1-9]\d{1,14}$" required placeholder="Phone Number" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-slate-400 placeholder:text-left py-2 pl-9 pr-3">
+                            <p id="phone-error" class="mb-2 absolute hidden text-red-800 text-sm">
                                 Please provide a Phone Number.
                             </p>
                         </div>
@@ -72,19 +72,19 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/password.svg">
                             </span>
-                            <input type="password" id="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="password-error" class="mb-2 absolute hidden text-blue-700 text-sm">
+                            <input type="password" id="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-slate-400 placeholder:text-left py-2 pl-9 pr-3">
+                            <p id="password-error" class="mb-2 absolute hidden text-red-800 text-sm">
                                 Password must be of length between 6 and 18.
                             </p>
                         </div>
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="mt-2 mb-2 bg-lime-600 rounded border-white border-1 p-2 w-24 text-[snow]">Sign up</button>
+                            <button type="submit" class="mt-2 mb-2 bg-lime-600 rounded border-white border-1 p-2 w-24">Sign up</button>
                         </div>
                     </form>
                 </div>
                 <div class="text-center  ml-6 ">
-                    <p class="text-center mb-2 mr-2 text-[snow]">
-                        Already have an account? <a href="login.html" class="text-blue-700" target="_parent">login here.</a>
+                    <p class="text-center mb-2">
+                        Already have an account? <a href="login.html" class="text-blue-700" target="main">login here.</a>
                     </p>
                 </div>
             </div>

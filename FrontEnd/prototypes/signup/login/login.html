@@ -37,19 +37,10 @@
         <div>
             <div class="absolute flex flex-col justify-center items-center space-y-3 bg-red-500 top-[2px] bottom-[2px] left-[2px] right-[2px]">
                 <div>
-                    <h4 class="playfair-display-title text-2xl mt-1 text-[snow]">Sign Up</h4>
+                    <h4 class="playfair-display-title text-2xl mt-1 text-[snow]">Login</h4>
                 </div>
                 <div>
                     <form  id="signup-form">
-                        <div class="relative m-6">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
-                                <img src="media/user.svg">
-                            </span>
-                            <input type="text" id="name-input" required placeholder="Name" pattern="^[A-Za-z]{3,50}$" class="peer bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="name-error" class="mb-2 absolute hidden text-blue-700 text-sm">
-                                Please provide a valid name.
-                            </p>
-                        </div>
                         <div class="relative m-6">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/email.svg">
@@ -57,15 +48,6 @@
                             <input type="email" id="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="email-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Please provide a valid email.
-                            </p>
-                        </div>
-                        <div class="relative m-6">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
-                                <img src="media/phone.svg">
-                            </span>
-                            <input type="text" id="phone-input" pattern="^\+?[1-9]\d{1,14}$" required placeholder="Phone Number" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
-                            <p id="phone-error" class="mb-2 absolute hidden text-blue-700 text-sm">
-                                Please provide a Phone Number.
                             </p>
                         </div>
                         <div class="relative m-6">
@@ -84,7 +66,7 @@
                 </div>
                 <div class="text-center  ml-6 ">
                     <p class="text-center mb-2 mr-2 text-[snow]">
-                        Already have an account? <a href="login.html" class="text-blue-700" target="_parent">login here.</a>
+                        Don't have an account? <a href="index.html" class="text-blue-700" target="_parent">Sign up here.</a>
                     </p>
                 </div>
             </div>
@@ -100,19 +82,6 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-
-    const nameInput=document.getElementById('name-input');
-    const nameError=document.getElementById('name-error'); 
-
-    nameInput.addEventListener('input',function(event){
-        if(!nameInput.validity.valid){
-            nameError.classList.remove('hidden');
-        }
-        else{
-            nameError.classList.add('hidden');
-        }
-    });
-
     const emailInput=document.getElementById('email-input');
     const emailError=document.getElementById('email-error');
 
@@ -124,19 +93,6 @@
             emailError.classList.add('hidden');
         }
     });
-
-    const phoneInput = document.getElementById('phone-input');
-    const phoneError=document.getElementById('phone-error')
-     
-    phoneInput.addEventListener('input',function(event){
-        if(!phoneInput.validity.valid){
-            phoneError.classList.remove('hidden');
-        }
-        else{
-            phoneError.classList.add('hidden');
-        }
-    });
-
     const passwordInput=document.getElementById('password-input');
     const passwordError=document.getElementById('password-error');
 
