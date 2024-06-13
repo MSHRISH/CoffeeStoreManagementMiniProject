@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "CoffeeStoreAPI\\Services\\ItemServices.cs",
               "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Services\\ItemServices.cs",
               "RelativeToolTip": "CoffeeStoreAPI\\Services\\ItemServices.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwB8AAAAIAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAcAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-31T10:40:39.299Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "RelativeToolTip": "CoffeeStoreAPI\\Services\\OrderServices.cs",
               "ViewState": "AQIAAAQBAAAAAAAAAAAmwCwBAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T09:17:31.074Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T09:17:31.074Z"
             },
             {
               "$type": "Document",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "CoffeeStoreAPI\\Iterfaces\\IOrderServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T09:17:26.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T09:17:26.761Z"
             }
           ]
         }
