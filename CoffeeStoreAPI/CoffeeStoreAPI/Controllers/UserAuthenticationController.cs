@@ -2,6 +2,7 @@
 using CoffeeStoreAPI.Models;
 using CoffeeStoreAPI.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ namespace CoffeeStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyCors")]
     public class UserAuthenticationController : ControllerBase
     {
         private readonly IUserService _userService;

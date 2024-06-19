@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-[url('media/pinkbg.jpg')] bg-cover  bg-fixed">
+    <header class="bg-red-500  rounded-lg m-4">
+        <nav class="flex items-center justify-between px-2 h-16">
+            <div>
+                <a href="#" class="oi-regular-tamil text-xl border-2 px-2 py-1 rounded-md whitespace-nowrap bg-gradient-to-r from-pink-600 via-pink-500 via-red-400 to-red-500" id="store-name">காப்பி கடை </a>
+            </div>
+            <div id="drop-panel" class="sm:block hidden sm:static sm:mr-16 sm:gap-4 sm:flex sm:flex-row text-[snow] absolute top-[75px] right-4 bg-red-500 rounded-b-md w-32 text-center">        
+                    <p class="hover:text-slate-500"><a href="#">Home</a></p>
+                    <p class="hover:text-slate-500"><a href="#">About</a></p>
+                    <p class="hover:text-slate-500"><a href="#">Menu</a></p>
+            </div>
+            <div class="sm:hidden">
+                <button id="menu-button">
+                    <span><img src="media/icons/menu-open.svg"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
+
+<script src="js/global.js"></script>
+<script>
+    var toggle=false;
+    $(document).ready(()=>{
+        $("#menu-button").click(()=>{
+            $("#drop-panel").slideToggle(500);
+            if(toggle){
+                toggle=false;
+            }
+            else{
+                toggle=true;
+            }
+        });
+
+        $(window).resize(function(){
+            var screenWidth = $(window).width();
+
+            //sm-breakpoint
+            if (screenWidth >= 640) {
+                $("#drop-panel").css('display','');
+            }
+        });
+    });
+</script>
