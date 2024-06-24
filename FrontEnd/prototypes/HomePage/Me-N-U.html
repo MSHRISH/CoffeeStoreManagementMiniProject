@@ -13,6 +13,8 @@
 
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="js/Me-N-U.js"></script>
 </head>
 <body class="bg-[url('media/pinkbg.jpg')] bg-cover  bg-fixed">
     <header class="bg-red-500  rounded-lg m-4">
@@ -32,8 +34,30 @@
             </div>
         </nav>
     </header>
-    <div class="grid sm:grid-cols-2 gap-4 m-4 bg-[#ffffff30] px-2 py-2">
-        
+    <div class="grid sm:grid-cols-12 gap-4 m-4  bg-[#ffffff30] px-2 py-2">
+        <div class="flex md:text-9xl  text-8xl sm:flex-col flex-row bg-black sm:col-span-2 w-auto text-[snow] text-center justify-center">
+            <span>M</span>
+            <span>E</span>
+            <span>N</span>
+            <span>U</span>
+        </div>
+        <div class="bg-[green] sm:col-span-10 w-auto px-2 py-2">
+            <div class="grid grid-cols-12 gap-2">
+                <input type="text" placeholder="Search for items" class="col-span-9 px-2 py-1" id="search-bar">
+             
+                <button class="bg-[blue] col-span-3 px-2 py-1" type="button" id="search-button" onclick="searchMenu()">Search</button>
+            </div>
+            <div class="bg-black mt-2 grid gap-2" id="menu-container">
+                <!--Menu tem Block-->
+            </div>
+            <div class="flex justify-center items-center mt-2" >
+                <nav aria-label="Page navigation example">
+                    <ul class="inline-flex -space-x-px text-sm" id="pagination-block">
+                        <!--Pagination Block-->
+                    </ul>
+                  </nav>
+            </div>
+        </div>
     </div>
 </body>
 </html>
@@ -62,4 +86,10 @@
             }
         });
     });
+</script>
+
+<script>
+
+
+
 </script>
