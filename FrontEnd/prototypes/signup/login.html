@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kappi Kadai</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/global.css">
 
     <!--Fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,12 +41,12 @@
                     <h4 class="playfair-display-title text-2xl mt-1 text-[snow]">Login</h4>
                 </div>
                 <div>
-                    <form  id="signup-form">
+                    <form  id="login-form">
                         <div class="relative m-6">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/email.svg">
                             </span>
-                            <input type="email" id="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="email" id="email-input" name="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="email-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Please provide a valid email.
                             </p>
@@ -55,7 +55,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/password.svg">
                             </span>
-                            <input type="password" id="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="password" id="password-input" name="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="password-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Password must be of length between 6 and 18.
                             </p>
@@ -66,9 +66,10 @@
                     </form>
                 </div>
                 <div class="text-center  ml-6 ">
-                    <p class="text-center mb-2 mr-2 text-[snow]">
+                    <p class="text-center  mr-2 text-[snow]">
                         Don't have an account? <a href="Signup.html" class="text-blue-700" target="_parent">Sign up here.</a>
                     </p>
+                    <p class="mr-4 text-green-700 "><a href="../HomePage/index.html" target="_parent">Go to Home</a></p>
                 </div>
             </div>
             
@@ -78,31 +79,10 @@
 </body>
 </html>
 
-<script src="tailwind.config.js"></script>
-<script src="global.js"></script>
-
+<script src="js/tailwind.config.js"></script>
+<script src="js/global.js"></script>
+<script src="js/login.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-    const emailInput=document.getElementById('email-input');
-    const emailError=document.getElementById('email-error');
-
-    emailInput.addEventListener('input',function(event){
-        if(!emailInput.validity.valid){
-            emailError.classList.remove('hidden');
-        }
-        else{
-            emailError.classList.add('hidden');
-        }
-    });
-    const passwordInput=document.getElementById('password-input');
-    const passwordError=document.getElementById('password-error');
-
-    passwordInput.addEventListener('input',function(event){
-        if(!passwordInput.validity.valid){
-            passwordError.classList.remove('hidden');
-        }
-        else{
-            passwordError.classList.add('hidden');
-        }
-    });
+    
 </script>

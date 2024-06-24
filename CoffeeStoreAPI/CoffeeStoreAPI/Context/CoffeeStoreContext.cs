@@ -40,13 +40,16 @@ namespace CoffeeStoreAPI.Context
         {
             builder.HasKey(x => x.Id);
 
+            builder.HasIndex(u => u.Email).IsUnique();
+            builder.HasIndex(u => u.Phone).IsUnique();
+
             builder.HasOne(u => u.Authentication)
                 .WithOne(a => a.User)
-                .HasForeignKey<Authentication>(a => a.Id);
+                .HasForeignKey<Authentication>(a => a.Id).OnDelete(DeleteBehavior.Cascade);
             
             builder.HasOne(u => u.RoleMapping)
                 .WithOne(rm => rm.User)
-                .HasForeignKey<RoleMapping>(rm => rm.UserId);
+                .HasForeignKey<RoleMapping>(rm => rm.UserId).OnDelete(DeleteBehavior.Cascade); ;
         }
 
         private void ConfigureAuthentication(EntityTypeBuilder<Authentication> builder)
@@ -69,7 +72,7 @@ namespace CoffeeStoreAPI.Context
 
             builder.HasOne(rm => rm.User)
                 .WithOne(u => u.RoleMapping)
-                .HasForeignKey<RoleMapping>(rm => rm.UserId);
+                .HasForeignKey<RoleMapping>(rm => rm.UserId).OnDelete(DeleteBehavior.Cascade);
         }
 
         private void ConfigureItem(EntityTypeBuilder<Item> builder) 

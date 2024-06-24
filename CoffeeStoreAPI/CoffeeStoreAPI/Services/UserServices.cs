@@ -26,13 +26,16 @@ namespace CoffeeStoreAPI.Services
 
         public async Task<TokenDTO> LoginUser(LoginDTO loginDTO)
         {
-            Authentication userAuth = await _authenticationReposiory.Get(loginDTO.UserId);
-            if (userAuth == null)
+            var allusers=await _userRepository.GetAll();
+            var thisuser= allusers.FirstOrDefault(u => u.Email == loginDTO.Uemailphone|| u.Phone == loginDTO.Uemailphone);
+
+            if (thisuser==null)
             {
                 throw new InvalidCredentials();
             }
-            User user = await _userRepository.Get(loginDTO.UserId);
-            if (user.Status == "Disabled")
+            Authentication userAuth = await _authenticationReposiory.Get(thisuser.Id);
+
+            if (thisuser.Status == "Disabled")
             {
                 throw new UserNotEnabled();
             }
@@ -42,12 +45,8 @@ namespace CoffeeStoreAPI.Services
             bool isHashSame = ComparePassword(PasswordHash, userAuth.PasswordHash);
             if(isHashSame)
             {
-                RoleMapping roleMapping=await _rolemappingRepository.Get(loginDTO.UserId);
-                /*if (roleMapping == null)
-                {
-                    throw new InvalidCredentials();
-                } */
-
+                RoleMapping roleMapping=await _rolemappingRepository.Get(thisuser.Id);
+     
                 Role role=await _roleRepository.Get(roleMapping.RoleId);
                 
                 TokenDTO tokenDTO=MapUserToTokenDTO(userAuth.Id,role.RoleName);
@@ -76,6 +75,20 @@ namespace CoffeeStoreAPI.Services
             }
             return true;
         }
+
+        public async Task<bool> CheckRegisterEmail(User user)
+        {
+            var allusers=await _userRepository.GetAll();
+            bool exists = allusers.Any(u => u.Email == user.Email);
+            return exists;
+        }
+        public async Task<bool> CheckRegisterPhone(User user)
+        {
+            var allusers = await _userRepository.GetAll();
+            bool exists = allusers.Any(u => u.Phone== user.Phone);
+            return exists;
+        }
+
         public async Task<UserDetails> RegisterUser(RegisterUserDTO registerUserDTO, int RoleId)
         {
             User user = null;
@@ -84,6 +97,14 @@ namespace CoffeeStoreAPI.Services
             try
             {
                 user = MapToUser(registerUserDTO);
+                if(await CheckRegisterEmail(user))
+                {
+                    throw new EmailAlreadyExistsExecption();
+                }
+                if(await CheckRegisterPhone(user))
+                {
+                    throw new PhoneAlreadyExistsExecption();
+                }
                 userAuthentication = MapUserToUserCredentials(registerUserDTO);
                 user = await _userRepository.Add(user);
                 userAuthentication.Id = user.Id;
@@ -93,7 +114,7 @@ namespace CoffeeStoreAPI.Services
                 UserDetails userDetails=MapToUserDetails(user,RoleId);
                 return userDetails;
             }
-            catch (Exception ex) { throw new Exception(); }
+            catch (Exception ex) { throw; }
             
         }
         private UserDetails MapToUserDetails(User user, int RoleId)

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kappi Kadai</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/global.css">
 
     <!--Fonts-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,7 @@
         shadow-[5px_5px_100px]
         shadow-pink-600 mt-3
         w-[300px]
-        h-[430px]
+        h-[465px]
         overflow-hidden
         before:absolute
         before:top-[-50%] before:right-[-50%] before:bottom-[-50%] before:left-[-50%]
@@ -46,7 +46,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/user.svg">
                             </span>
-                            <input type="text" id="name-input" required placeholder="Name" pattern="^[A-Za-z]{3,50}$" class="peer bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="text" id="name-input" name="name-input" required placeholder="Name" pattern="^[A-Za-z]{3,50}$" class="peer bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="name-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Please provide a valid name.
                             </p>
@@ -55,7 +55,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/email.svg">
                             </span>
-                            <input type="email" id="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="email" id="email-input" name="email-input" required placeholder="Email" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="email-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Please provide a valid email.
                             </p>
@@ -64,7 +64,7 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/phone.svg">
                             </span>
-                            <input type="text" id="phone-input" pattern="^\+?[1-9]\d{1,14}$" required placeholder="Phone Number" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="text" id="phone-input" name="phone-input" pattern="^\d{10}$" required placeholder="Phone Number" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="phone-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Please provide a Phone Number.
                             </p>
@@ -73,20 +73,21 @@
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2"> 
                                 <img src="media/icons/password.svg">
                             </span>
-                            <input type="password" id="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
+                            <input type="password" id="password-input" name="password-input" required pattern="\w{6,17}" placeholder="Password" class=" bg-white bg-opacity-50 rounded border-white border-1 placeholder:text-[snow] placeholder:text-left py-2 pl-9 pr-3">
                             <p id="password-error" class="mb-2 absolute hidden text-blue-700 text-sm">
                                 Password must be of length between 6 and 18.
                             </p>
                         </div>
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="mt-2 mb-2 bg-lime-600 rounded border-white border-1 p-2 w-24 text-[snow]">Sign up</button>
+                            <button type="submit"  class="mt-2 mb-2 bg-lime-600 rounded border-white border-1 p-2 w-24 text-[snow]">Sign up</button>
                         </div>
                     </form>
                 </div>
                 <div class="text-center  ml-6 ">
-                    <p class="text-center mb-2 mr-2 text-[snow]">
+                    <p class="text-center  mr-2 text-[snow]">
                         Already have an account? <a href="login.html" class="text-blue-700" target="_parent">login here.</a>
                     </p>
+                    <p class="mr-4 text-green-700 "><a href="../HomePage/index.html" target="_parent">Go to Home</a></p>
                 </div>
             </div>
             
@@ -96,57 +97,11 @@
 </body>
 </html>
 
-<script src="tailwind.config.js"></script>
-<script src="global.js"></script>
-
+<script src="js/tailwind.config.js"></script>
+<script src="js/global.js"></script>
+<script src="js/signup.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
 
-    const nameInput=document.getElementById('name-input');
-    const nameError=document.getElementById('name-error'); 
-
-    nameInput.addEventListener('input',function(event){
-        if(!nameInput.validity.valid){
-            nameError.classList.remove('hidden');
-        }
-        else{
-            nameError.classList.add('hidden');
-        }
-    });
-
-    const emailInput=document.getElementById('email-input');
-    const emailError=document.getElementById('email-error');
-
-    emailInput.addEventListener('input',function(event){
-        if(!emailInput.validity.valid){
-            emailError.classList.remove('hidden');
-        }
-        else{
-            emailError.classList.add('hidden');
-        }
-    });
-
-    const phoneInput = document.getElementById('phone-input');
-    const phoneError=document.getElementById('phone-error')
-     
-    phoneInput.addEventListener('input',function(event){
-        if(!phoneInput.validity.valid){
-            phoneError.classList.remove('hidden');
-        }
-        else{
-            phoneError.classList.add('hidden');
-        }
-    });
-
-    const passwordInput=document.getElementById('password-input');
-    const passwordError=document.getElementById('password-error');
-
-    passwordInput.addEventListener('input',function(event){
-        if(!passwordInput.validity.valid){
-            passwordError.classList.remove('hidden');
-        }
-        else{
-            passwordError.classList.add('hidden');
-        }
-    });
+    
 </script>
