@@ -1,4 +1,4 @@
-const Employee = localStorage.getItem('EmployeeData');
+const Employee = JSON.parse(localStorage.getItem('EmployeeData'));
 console.log("Token in LocalStorage: "+Employee);
 
 //Check Token is present
@@ -7,6 +7,7 @@ if(!Employee){
     window.location.href="../signup/login.html"
 }
 
+console.log("Token in LocalStorage: "+Employee.token);
 //Check if token is valid
 const decodedToken=jwtRipOpen(Employee.token);
 if(!validateToken(decodedToken)){

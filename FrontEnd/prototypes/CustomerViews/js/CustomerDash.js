@@ -1,13 +1,13 @@
 const Customer = JSON.parse(localStorage.getItem('CustomerData'));
 console.log("Data in LocalStorage: "+Customer); 
-console.log("Token in LocalStorage: "+Customer.token);
+
 
 //Check if token is present
 if(!Customer){
     alert("Log in as Customer!");
     window.location.href="../signup/login.html"
 }
-
+console.log("Token in LocalStorage: "+Customer.token);
 //Check if token is valid
 const decodedToken=jwtRipOpen(Customer.token);
 if(!validateToken(decodedToken)){
