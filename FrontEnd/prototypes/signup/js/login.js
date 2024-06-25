@@ -54,6 +54,15 @@ loginForm.addEventListener("submit",function(event){
         console.log(data);
         console.log(data.token);
         loginForm.reset();
+        if(data.role==="Customer"){
+            localStorage.setItem('CustomerData', JSON.stringify(data));
+            window.location.href = '../CustomerViews/CustomerDash.html';
+        }
+        else{
+            localStorage.setItem('EmployeeData', JSON.stringify(data));
+            window.location.href = '../EmployeeViews/EmployeeDash.html';
+        }
+        
     })
     .catch(error=>{
         console.error("Login Error: ", error);

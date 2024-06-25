@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">Logout</button>
+
+    <div id="logoutModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6">
+            <h2 class="text-xl font-semibold mb-4">Are you sure you want to logout?</h2>
+            <div class="flex justify-end space-x-4">
+                <button id="cancelBtn" class="px-4 py-2 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">Cancel</button>
+                <button id="confirmLogoutBtn" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
+
+    logoutBtn.addEventListener('click', () => {
+        logoutModal.classList.remove('hidden');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        logoutModal.classList.add('hidden');
+    });
+
+    confirmLogoutBtn.addEventListener('click', () => {
+        // Perform logout action here
+        alert('Logged out');
+        logoutModal.classList.add('hidden');
+    });
+
+    // Optional: close the modal when clicking outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === logoutModal) {
+            logoutModal.classList.add('hidden');
+        }
+    });
+});
+
+</script>

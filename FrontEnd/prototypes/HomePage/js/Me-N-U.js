@@ -49,7 +49,7 @@ function displayMenu(paginatedMenu){
     menuContainer.innerHTML='';
     paginatedMenu.forEach(item => {
         const itemBlock=document.createElement('div');
-        itemBlock.className="bg-[snow]   px-2 py-1 flex flex-col  justify-center items-center";
+        itemBlock.className="bg-[snow]   px-2 py-1 flex flex-col  justify-center items-center hover:bg-slate-500";
 
         const itemName=document.createElement('span');
         itemName.className="font-bold text-xl";
