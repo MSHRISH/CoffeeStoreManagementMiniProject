@@ -47,12 +47,24 @@
                 <div class="px-2 py-1">
                     <p class="">Welcome to <span class="font-bold">Kappi Kadai</span>, where every cup tells a story. Nestled in <span class="font-bold">Madurai</span>, our coffee shop is a haven for coffee lovers seeking a blend of quality and community. Whether you're craving a rich espresso, a velvety latte, or a soothing herbal tea, our passionate baristas craft each drink with care. Pair your beverage with our freshly baked pastries or artisanal sandwiches for a delightful experience. Join us for a moment of warmth and connection at <span class="font-bold">Kappi Kadai</span>.</p>
                 </div>
-                <div class="grid  md:grid-cols-2 md:gap-14 gap-4 ">
-                    <div class="">
-                        <button onclick="redirectSignup()" class="bg-red-700 w-48 h-10 rounded-xl hover:shadow-lg  border-black hover:border-2 hover:font-bold">Signup</button>
-                    </div>
-                    <div class="">
-                        <button onclick="redirectLogin()" class="bg-red-700 w-48 h-10 rounded-xl rounded-xl hover:shadow-lg  border-black hover:border-2 hover:font-bold">Login</button>
+                <div class=" relative
+                border-pink-400 border 
+                shadow-[5px_5px_100px]
+                shadow-pink-600 mt-3
+                w-[195px]
+                h-[43px]
+                overflow-hidden
+                before:absolute
+                before:top-[-50%] before:right-[-50%] before:bottom-[-50%] before:left-[-50%]
+                before:bg-[conic-gradient(transparent,transparent,#d83d3d)]
+                before:animate-spin-fast
+                rounded-lg
+                flex
+                justify-center
+                items-center
+                ">
+                    <div class="absolute">
+                        <button onclick="redirectSignup()" class="bg-red-700 w-48 h-10 rounded-lg hover:shadow-lg  border-black hover:border-2 hover:font-bold">Enter Cafe</button>
                     </div>
                 </div>
             </div>
@@ -63,6 +75,7 @@
 
 <script src="js/global.js"></script>
 <script src="js/hompage.js"></script>
+<script src="../signup/js/tailwind.config.js"></script>
 <script>
     var toggle=false;
     $(document).ready(()=>{

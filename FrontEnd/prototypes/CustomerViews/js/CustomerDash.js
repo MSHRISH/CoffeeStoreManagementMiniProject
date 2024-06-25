@@ -12,11 +12,29 @@ console.log("Token in LocalStorage: "+Customer.token);
 const decodedToken=jwtRipOpen(Customer.token);
 if(!validateToken(decodedToken)){
     alert("Invalid Token Login again");
+    localStorage.removeItem('CustomerData');
     window.location.href="../signup/login.html"
 }
 
-//LogoutLogic
+//LogoutLogic and Page Highlight
 document.addEventListener('DOMContentLoaded',()=>{
+
+    //Current Page
+    let currentPageId='menu-page';
+
+    //Menu page
+    document.getElementById('menu-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('menu-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='menu-page';
+    });
+
+    //Profile Page
+    document.getElementById('profile-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('profile-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='profile-page';
+    });
 
     const logoutBtn = document.getElementById('logout-button');
     const logoutModal = document.getElementById('logout-modal');
@@ -82,3 +100,5 @@ function validateToken(decodedToken){
         return false;
     }
 }
+
+

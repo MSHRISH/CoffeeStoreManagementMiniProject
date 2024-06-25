@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/global.css">
+
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,36 +14,13 @@
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="js/Me-N-U.js"></script>
+    <script src="js/Customer-Me-N-U.js"></script>
 </head>
-<body class="bg-[url('media/pinkbg.jpg')] bg-cover  bg-fixed">
-    <header class="bg-red-500  rounded-lg m-4">
-        <nav class="flex items-center justify-between px-2 h-16">
-            <div>
-                <a href="#" class="oi-regular-tamil text-xl border-2 px-2 py-1 rounded-md whitespace-nowrap bg-gradient-to-r from-pink-600 via-pink-500 via-red-400 to-red-500" id="store-name">காப்பி கடை </a>
-            </div>
-            <div id="drop-panel" class="sm:block hidden sm:static sm:mr-16 sm:gap-4 sm:flex sm:flex-row text-[snow] absolute top-[75px] right-4 bg-red-500 rounded-b-md w-48 text-center">        
-                    <p class="hover:text-slate-500"><a href="index.html">Home</a></p>
-                    <p class="hover:text-slate-500"><a href="#">About</a></p>
-                    <p class="hover:text-slate-500"><a href="#">Me-N-U</a></p>
-            </div>
-            <div class="sm:hidden">
-                <button id="menu-button">
-                    <span><img src="media/icons/menu-open.svg"></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-    <div class="grid sm:grid-cols-12 gap-4 m-4  bg-[#ffffff30] px-2 py-2">
-        <div class="flex md:text-9xl  text-8xl sm:flex-col flex-row bg-red-500 sm:col-span-2 w-auto text-[snow] text-center justify-center">
-            <span>M</span>
-            <span>E</span>
-            <span>N</span>
-            <span>U</span>
-        </div>
-        <div class=" sm:col-span-10 w-auto px-2 py-2">
+<body class="">
+    <div class="">
+        <div class=" w-auto px-2 py-2">
             <div class="grid grid-cols-12 gap-2">
-                <input type="text" placeholder="Search for items" class="col-span-9 px-2 py-1 border border-black" id="search-bar">
+                <input type="text" placeholder="Search for items" class="col-span-9 px-2 py-1 border-black border" id="search-bar">
              
                 <button class="bg-[blue] col-span-3 px-2 py-1" type="button" id="search-button" onclick="searchMenu()">Search</button>
             </div>
@@ -62,7 +39,7 @@
 </body>
 </html>
 
-<script src="js/global.js"></script>
+
 
 <script>
     var toggle=false;

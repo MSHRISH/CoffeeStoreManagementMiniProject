@@ -1,3 +1,10 @@
+const Customer = JSON.parse(localStorage.getItem('CustomerData'));
+if(Customer){
+    window.location.href='../CustomerViews/CustomerDash.html';
+}
+
+
+
 const emailInput=document.getElementById('email-input');
     const emailError=document.getElementById('email-error');
 
