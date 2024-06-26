@@ -3,6 +3,8 @@ function removeToken(){
 }
 //window.addEventListener('beforeunload', removeToken);
 
+
+
 const Employee = JSON.parse(localStorage.getItem('EmployeeData'));
 //console.log("Token in LocalStorage: "+Employee);
 
@@ -15,17 +17,44 @@ if(!Employee){
 console.log("Token in LocalStorage: "+Employee.token);
 //Check if token is valid
 const decodedToken=jwtRipOpen(Employee.token);
-if(!validateToken(decodedToken)){
+if(!validateEmployeeToken(decodedToken)){
     alert("Invalid Token Login again");
     window.location.href="../signup/login.html"
 }
 
 //LogoutLogic and Page Highlight
 document.addEventListener('DOMContentLoaded',()=>{
+    //Hide Endpoints
+    const Employee = JSON.parse(localStorage.getItem('EmployeeData'));
+    const decodedToken=jwtRipOpen(Employee.token);
 
-    
+    //Manager and Barista Access Denial
+    if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Manager" || decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Barista"){
+        document.getElementById("changestatus-page").classList.add('hidden');
+    }
+
+    //Barista Access Denial
+    if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Barista"){
+        document.getElementById("addemployee-page").classList.add('hidden');
+        document.getElementById("customer-page").classList.add('hidden');
+    }
+
+
+
+
+    //Sidebar 
+    document.getElementById("sidebar-icon").addEventListener('click',()=>{
+        document.getElementById('sidebar').classList.remove('hidden');
+        document.getElementById('sidebar').classList.add('absolute');
+    });
+
+    document.getElementById('close-sidebar').addEventListener('click',()=>{
+        document.getElementById('sidebar').classList.add('hidden');
+        document.getElementById('sidebar').classList.remove('absolute');
+    });
+
     //Current Page
-    let currentPageId='addemployee-page';
+    let currentPageId='profile-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{
@@ -48,6 +77,19 @@ document.addEventListener('DOMContentLoaded',()=>{
         currentPageId='addemployee-page';
     });
 
+    //ChangeStatus Page
+    document.getElementById("changestatus-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('changestatus-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='changestatus-page';
+    });
+
+    //Customer Page
+    document.getElementById("customer-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('customer-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='customer-page';
+    });
 
     //Hiding pages from lower employees
     document.getElementById
@@ -82,39 +124,4 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
-//JWT Token Rip-Open Test
-function jwtRipOpen(token){
-    const parts = token.split('.');
 
-    if (parts.length !== 3) {
-        alert('Invalid JWT.');
-        return;
-    }
-
-    const base64Url = parts[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    const payload = JSON.parse(jsonPayload);
-    //console.log(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-    //console.log(payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]);
-    //console.log(payload["exp"]);
-    console.log(JSON.stringify(payload,null,2))
-    return payload;
-}
-
-
-function validateToken(decodedToken){
-    if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=='Customer'){
-        return false;
-    }
-    const currentTime = Math.floor(Date.now() / 1000);
-
-    if (decodedToken['exp'] && currentTime < decodedToken['exp']) {
-        return true;
-    } else {
-        return false;
-    }
-}

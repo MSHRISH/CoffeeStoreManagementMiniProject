@@ -5,3 +5,4 @@ function redirectSignup(){
 function redirectLogin(){
     window.location.href="../signup/login.html"
 }
+

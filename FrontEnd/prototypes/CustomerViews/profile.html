@@ -6,16 +6,41 @@
     <title>Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/profile.js"></script>
+    <script src="../Global/js/Global.js"></script>
+    <script src="../Global/js/tailwind.config.js" ></script>
 </head>
 <body class="bg-[snow] flex flex-col  justify-center items-center h-screen">
-    
-    <div id="profile-container"  class="flex flex-col border-2 w-fit px-8 py-2 gap-3 justify-start bg-red-500 rounded-lg">
-        <h1 class="text-center text-2xl font-bold">Profile <hr></h1>
-        <span ><span class="font-bold">Name</span>: <span id="profile-name"></span></span>
-        <span><span class="font-bold">Email</span>: <span id="profile-email"></span></span>
-        <span><span class="font-bold">Phone</span>: <span id="profile-phone"></span></span>
-        <span><span class="font-bold">UserId</span>: <span id="profile-userid"></span></span>
-        <span><span class="font-bold">Role</span>: <span id="profile-role"></span></span>
+    <div class="relative
+    border-pink-400 border 
+    shadow-[5px_5px_100px]
+    shadow-pink-600 mt-3
+    w-[300px]
+    h-[465px]
+    overflow-hidden
+    before:absolute
+    before:top-[-50%] before:right-[-50%] before:bottom-[-50%] before:left-[-50%]
+    before:bg-[conic-gradient(transparent,transparent,#d83d3d)]
+    before:animate-spin-slow
+    rounded-lg
+    ">
+
+    <div>
+        <div class="absolute rounded-lg flex flex-col justify-center items-center space-y-3 bg-red-500 top-[1px] bottom-[1px] left-[1px] right-[1px]">
+            <div>
+                <h4 class="playfair-display-title text-2xl mt-1 text-[snow]">Profile Details</h4>
+            </div>
+            <div>
+                <div id="profile-container"  class="flex text-[snow] flex-col  w-fit px-2 py-1 gap-3 justify-start bg-red-500 rounded-lg">
+                    <span ><span class="font-bold">Name</span>: <span id="profile-name"></span></span>
+                    <span><span class="font-bold">Email</span>: <span id="profile-email"></span></span>
+                    <span><span class="font-bold">Phone</span>: <span id="profile-phone"></span></span>
+                    <span><span class="font-bold">UserId</span>: <span id="profile-userid"></span></span>
+                    <span><span class="font-bold">Role</span>: <span id="profile-role"></span></span>
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
+
 </html>
