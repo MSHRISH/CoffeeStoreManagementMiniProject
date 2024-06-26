@@ -80,7 +80,6 @@ signupForm.addEventListener("submit",function(event){
         alert("Signup Successfull. Redirecting to login page.");
         signupForm.reset();
         window.location.href = 'login.html';
-
     })
     .catch(error=>{
         console.error("Fetch error:", error);

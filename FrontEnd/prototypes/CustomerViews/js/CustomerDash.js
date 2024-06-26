@@ -20,7 +20,7 @@ if(!validateToken(decodedToken)){
 document.addEventListener('DOMContentLoaded',()=>{
 
     //Current Page
-    let currentPageId='menu-page';
+    let currentPageId='profile-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{

@@ -4,7 +4,7 @@ function removeToken(){
 //window.addEventListener('beforeunload', removeToken);
 
 const Employee = JSON.parse(localStorage.getItem('EmployeeData'));
-console.log("Token in LocalStorage: "+Employee);
+//console.log("Token in LocalStorage: "+Employee);
 
 //Check Token is present
 if(!Employee){
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     
     //Current Page
-    let currentPageId='menu-page';
+    let currentPageId='addemployee-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{
@@ -41,6 +41,18 @@ document.addEventListener('DOMContentLoaded',()=>{
         currentPageId='profile-page';
     });
 
+    //AddEmployee page
+    document.getElementById('addemployee-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('addemployee-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='addemployee-page';
+    });
+
+
+    //Hiding pages from lower employees
+    document.getElementById
+
+    //Logout button
     const logoutBtn = document.getElementById('logout-button');
     const logoutModal = document.getElementById('logout-modal');
     const cancelBtn = document.getElementById('cancelBtn');
@@ -86,9 +98,9 @@ function jwtRipOpen(token){
     }).join(''));
 
     const payload = JSON.parse(jsonPayload);
-    console.log(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-    console.log(payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]);
-    console.log(payload["exp"]);
+    //console.log(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+    //console.log(payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]);
+    //console.log(payload["exp"]);
     console.log(JSON.stringify(payload,null,2))
     return payload;
 }
