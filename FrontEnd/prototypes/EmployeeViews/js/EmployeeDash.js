@@ -31,12 +31,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     //Manager and Barista Access Denial
     if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Manager" || decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Barista"){
         document.getElementById("changestatus-page").classList.add('hidden');
+        document.getElementById("manager-page").classList.add('hidden');
     }
 
     //Barista Access Denial
     if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Barista"){
         document.getElementById("addemployee-page").classList.add('hidden');
         document.getElementById("customer-page").classList.add('hidden');
+        document.getElementById("barista-page").classList.add('hidden');
+        document.getElementById("additem-page").classList.add('hidden');
     }
 
 
@@ -91,8 +94,27 @@ document.addEventListener('DOMContentLoaded',()=>{
         currentPageId='customer-page';
     });
 
-    //Hiding pages from lower employees
-    document.getElementById
+     //Manager Page
+     document.getElementById("manager-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('manager-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='manager-page';
+    });
+
+    //Barista Page
+    document.getElementById("barista-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('barista-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='barista-page';
+    });
+
+    //Barista Page
+    document.getElementById("additem-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('additem-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='additem-page';
+    });
+
 
     //Logout button
     const logoutBtn = document.getElementById('logout-button');

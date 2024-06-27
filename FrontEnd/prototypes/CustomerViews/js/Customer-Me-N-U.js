@@ -6,7 +6,7 @@ const itemTypeMap = new Map();
 
 
 
-fetchMenu();
+
 fetchItemTypes()
 
 async function fetchMenu(){
@@ -31,6 +31,7 @@ async function fetchItemTypes(){
         itemTypes.forEach(type => {
             itemTypeMap.set(type.typeName, type.id);
         });
+        fetchMenu();
     }catch(error){
         console.error('Error fetching the quotes:', error);
     }

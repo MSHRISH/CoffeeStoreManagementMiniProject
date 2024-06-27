@@ -5,15 +5,16 @@ let itemTypes=[]
 const itemTypeMap = new Map();
 
 
+fetchItemTypes();
 
-fetchMenu();
-fetchItemTypes()
+
 
 async function fetchMenu(){
     try{
         const response = await fetch('http://localhost:5122/api/ItemServices/GetAllItems');
         const data = await response.json();
         menu=data;
+        console.log(menu)
         menu=sortItems(menu);
         displayMenubyPage(currentPage,menu);
         pagination(menu.length,menu);
@@ -27,10 +28,12 @@ async function fetchItemTypes(){
         const response = await fetch('http://localhost:5122/api/ItemServices/GetAllItemTypes');
         const data = await response.json();
         itemTypes=data;
-        //console.log(itemTypes)
+        // console.log(itemTypes)
         itemTypes.forEach(type => {
             itemTypeMap.set(type.typeName, type.id);
         });
+        fetchMenu();
+        // console.log(itemTypeMap.get('Beverages'))
     }catch(error){
         console.error('Error fetching the quotes:', error);
     }
@@ -127,8 +130,8 @@ function searchMenu(){
     pagination(searchItems.length,searchItems);
 }
 
-function sortItems(items){
-    return items.sort((a, b) => {
+function sortItems(Items){
+    return Items.sort((a, b) => {
         const typeIdA = itemTypeMap.get(a.itemType);
         const typeIdB = itemTypeMap.get(b.itemType);
 

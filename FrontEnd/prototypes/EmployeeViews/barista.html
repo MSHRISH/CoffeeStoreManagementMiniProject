@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="js/barista.js"></script>
+</head>
+<body class="">
+    <div class="">
+        <div class=" w-auto px-2 py-2">
+            <div class="grid grid-cols-12 gap-2">
+                <input type="text" placeholder="Search for items" class="col-span-9 px-2 py-1 border-black border" id="search-bar">
+             
+                <button class="bg-[blue] col-span-3 px-2 py-1" type="button" id="search-button" onclick="searchMenu()">Search</button>
+            </div>
+            <div>
+                
+            </div>
+            <div class=" mt-2 grid gap-2" id="customer-container">
+                <!--Menu tem Block-->
+            </div>
+            <div class="flex justify-center items-center mt-2" >
+                <nav aria-label="Page navigation example">
+                    <ul class="inline-flex -space-x-px text-sm" id="pagination-block">
+                        <!--Pagination Block-->
+                    </ul>
+                  </nav>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

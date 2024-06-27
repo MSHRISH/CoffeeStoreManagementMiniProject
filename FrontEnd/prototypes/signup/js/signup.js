@@ -1,3 +1,10 @@
+const customerdata=localStorage.getItem("CustomerData")
+
+if(customerdata){
+    document.getElementById('token-present').classList.remove('hidden');
+    document.getElementById('token-absent').classList.add('hidden')
+}
+
 const nameInput=document.getElementById('name-input');
     const nameError=document.getElementById('name-error'); 
 

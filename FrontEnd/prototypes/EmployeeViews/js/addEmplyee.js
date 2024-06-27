@@ -123,4 +123,9 @@ addemployeeForm.addEventListener("submit",function(event){
         alert("New Employee Created!!");
         addemployeeForm.reset();
     })
+    .catch(error=>{
+        console.error("Login Error: ", error);
+        const errorObject = JSON.parse(error.message);
+        alert("Error Code: "+errorObject.errorCode+"\nError Message: "+errorObject.message);
+    })
 });
