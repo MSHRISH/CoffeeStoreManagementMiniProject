@@ -300,5 +300,31 @@ namespace CoffeeStoreAPI.Services
             order = await _orderRepository.Update(order);
             return await MapToOrderDetailsDTO(order);
         }
+
+        public async Task<List<OrderDetailsDTO>> GetAllOrders()
+        {
+            var AllOrderItems = await _orderRepository.GetAll();
+            var result= new List<OrderDetailsDTO>();
+            foreach(var item in AllOrderItems)
+            {
+               
+               result.Add( await MapToOrderDetailsDTO(item));
+            }
+            return result;
+        }
+
+        public async Task<List<OrderDetailsDTO>> GetAllMyOrders(int UserID)
+        {
+            var AllOrderItems = await _orderRepository.GetAll();
+            var result= new List<OrderDetailsDTO>();
+            foreach(var item in AllOrderItems)
+            {
+                if(item.UserId == UserID)
+                {
+                    result.Add(await MapToOrderDetailsDTO(item));
+                }
+            }
+            return result ;
+        }
     }
 }

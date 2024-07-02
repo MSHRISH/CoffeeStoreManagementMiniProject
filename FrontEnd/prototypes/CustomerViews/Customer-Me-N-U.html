@@ -20,9 +20,11 @@
     <div class="">
         <div class=" w-auto px-2 py-2">
             <div class="grid grid-cols-12 gap-2">
-                <input type="text" placeholder="Search for items" class="col-span-9 px-2 py-1 border-black border" id="search-bar">
-             
+                <input type="text" placeholder="Search for items" class="col-span-6 px-2 py-1 border-black border" id="search-bar">
+    
                 <button class="bg-[blue] col-span-3 px-2 py-1" type="button" id="search-button" onclick="searchMenu()">Search</button>
+    
+                <button class="bg-[blue] col-span-3 px-2 py-1" type="button" id="add-to-order-button" onclick="">Add to Order</button>
             </div>
             <div class=" mt-2 grid gap-2" id="menu-container">
                 <!--Menu tem Block-->
@@ -34,6 +36,31 @@
                     </ul>
                   </nav>
             </div>
+            
+            <!-- Order Items Modal -->
+            <div id="order-items-modal" class=" hidden bg-[grey] bg-opacity-70 h-dvh w-dvh fixed inset-0 flex flex-row items-center justify-center">
+                <div class="bg-white rounded-lg shadow-lg max-w-sm  p-6 flex flex-col gap-2">
+                        <div class="flex flex-col gap-2 " id="modal-content">
+                            <!-- Cart Items -->
+                            <span class="text-center font-bold">Cart Items</span>
+                            <div id="cart-items-modal" class="flex flex-col gap-2 border-2 px-2 py-1 max-h-64 overflow-auto">
+                                <!-- Cart Items -->
+                            </div>
+                            <div class="gap-2">
+                                <span>Add to Order:</span>
+                                <select name="order-id" id="order-id" class="border border-black">
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                            <button class="bg-green-500 px-2 py-1 rounded-lg" id="order-button">Add to Order</button>
+                            <button class="bg-blue-500 px-2 py-1 rounded-lg" id="new-order-button">Add to New Order</button>
+                            <button class="bg-red-500 px-2 py-1 rounded-lg" id="cancel-button">Cancel</button>
+                        </div>
+                        
+                        <img src="media/loading.gif" class="h-[60px] hidden" id="loading-gif">
+                </div>
+            </div>
+        
         </div>
     </div>
 </body>

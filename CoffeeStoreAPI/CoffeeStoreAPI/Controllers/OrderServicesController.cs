@@ -55,6 +55,42 @@ namespace CoffeeStoreAPI.Controllers
             }
         }
 
+        [HttpGet("GetAllOrders")]
+        [Authorize(Policy = "RequireStoreEmployee")]
+        [ProducesResponseType(typeof(List<OrderDetailsDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> GetAllOrders()
+        {
+            try
+            {
+                var res = await _orderServices.GetAllOrders();
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+        [HttpGet("GetAllMyOrders")]
+        [Authorize(Policy = "RequireCustomerRole")]
+        [ProducesResponseType(typeof(List<OrderDetailsDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> GetAllMyOrders()
+        {
+            try
+            {
+                int.TryParse(User.FindFirst(ClaimTypes.Name)?.Value, out int parsedUserId);
+                var res = await _orderServices.GetAllMyOrders(parsedUserId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
+
+
         [HttpGet("GetOrderById/{orderid}")]
         [Authorize(Policy = "RequireStoreEmployee")]
         [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]

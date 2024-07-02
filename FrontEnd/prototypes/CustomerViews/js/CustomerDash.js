@@ -21,7 +21,7 @@ if(!validateCutomerToken(decodedToken)){
 document.addEventListener('DOMContentLoaded',()=>{
 
     //Current Page
-    let currentPageId='profile-page';
+    let currentPageId='menu-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{
