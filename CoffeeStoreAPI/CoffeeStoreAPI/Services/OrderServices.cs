@@ -166,6 +166,10 @@ namespace CoffeeStoreAPI.Services
             {
                 throw new PreparationStartedExecption(); //Store cant cancel the items that are started preparation or delivered.
             }
+            if (orderItem.CancellationStatus != "NULL")
+            {
+                throw new ItemCancelledExecption();
+            }
             orderItem.CancellationStatus = "CancelledByStore";
             orderItem=await _orderItemRepository.Update(orderItem);
 
@@ -193,7 +197,11 @@ namespace CoffeeStoreAPI.Services
             {
                 throw new NoSuchOrderItemFoundExecption();
             }
-            
+            if (orderitem.CancellationStatus != "NULL")
+            {
+                throw new ItemCancelledExecption();
+            }
+
             orderitem.CancellationStatus = "CancelledByCustomer";
             orderitem=await _orderItemRepository.Update(orderitem);
 
@@ -254,7 +262,7 @@ namespace CoffeeStoreAPI.Services
                             select orderitem;
             foreach(var item in OrderItems)
             {
-                if(item.CancellationStatus == "NULL" && item.ItemStatus== "Accepted")
+                if(item.CancellationStatus == "NULL" && item.ItemStatus == "Accepted")
                 {
                     item.CancellationStatus = "CancelledByStore";
                     await _orderItemRepository.Update(item);

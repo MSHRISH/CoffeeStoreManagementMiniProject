@@ -73,18 +73,18 @@ function displayMenu(paginatedMenu,flag){
         const addButton=document.createElement('button')
         addButton.innerText="Add";
         
-        addButton.className="bg-green-200 rounded-lg px-2 py-1"
+        addButton.className="hover:border-green-400 border-2 bg-green-200 rounded-lg px-2 py-1"
         addButton.id=item.itemId;
         addButton.name="add-button-"+item.itemId
 
         const plusButton=document.createElement('button')
         plusButton.innerText="+";
-        plusButton.className="bg-green-500 hidden py-1 px-2 rounded-lg";
+        plusButton.className="hover:border-green-700 border-2 bg-green-500 hidden py-1 px-2 rounded-lg";
         plusButton.id=item.itemId;
 
         const minusButton=document.createElement("button")
         minusButton.innerText="-";
-        minusButton.className="bg-red-500 hidden py-1 px-2 rounded-lg"
+        minusButton.className="hover:border-red-700 border-2 bg-red-500 hidden py-1 px-2 rounded-lg"
         minusButton.id=item.itemId;
 
         if(flag===1){
@@ -287,12 +287,101 @@ let orders=[]
 
 //gets all order details of the customer
 async function fetchOrders(){
-  
+  try{
+    let options={
+        headers:{
+            'accept':'text/plain',
+            'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+        }
+    }
+    const response=await fetch('http://localhost:5122/api/OrderServices/GetAllMyOrders',options);
+    const data=await response.json();
+    orders=data;
+
+    const selectOrderId=document.getElementById("select-order-id");
+    selectOrderId.innerHTML="";
+
+    orders.forEach(order => {
+            if(order.orderStatus==="Open"){
+                const orderIdOption=document.createElement("option");
+                orderIdOption.value=order.orderId;
+                orderIdOption.innerText=order.orderId;
+
+                selectOrderId.appendChild(orderIdOption)
+            }
+    });
+  }catch(error){
+    console.error("Error: ",error);
+  }
 }
 
 
+async function fetchAddItemAPI(itemId,qty,orderId){
+    let addOrderItem={orderId:parseInt(orderId),itemId:parseInt(itemId),quantity:parseInt(qty)};
+    console.log("ADDOrderDTO", addOrderItem); //2
+
+    let options={
+        method:'POST',
+        headers:{
+            'accept':'text/plain',
+            'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token,
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(addOrderItem)
+    }
+
+    const response = await fetch("http://localhost:5122/api/OrderServices/AddToAnOrder", options);
+    const data=await response.json();
+    console.log(data); //3
+
+    console.log("Function END:");
+
+}
+
+
+
+//Place all order items
+async function addItemstoOrders(){
+    const orderId=document.getElementById("select-order-id").value;
+    let result = confirm("Are you sure you want to add the items to "+orderId,"?");
+    if(result===false){
+        alert("Process Cancelled!");
+        return;
+    }
+    let errors={};
+    // console.log(orderId);
+    console.log("Cart: ",cart);
+
+    for (const itemId of Object.keys(cart)) {
+        const qty=cart[itemId];
+        console.log(qty,itemId); //1
+        await fetchAddItemAPI(itemId,qty,orderId);
+
+        console.log("LOOOP END"); //4
+    }
+
+    // Object.keys(cart).forEach(async itemId => {
+    //     const qty=cart[itemId];
+    //     console.log(qty,itemId); //1
+    //     await fetchAddItemAPI(itemId,qty,orderId);
+
+    //     console.log("LOOOP END"); //4
+    // });
+
+    if(Object.keys(errors).length===0){
+        console.log("success") //5
+        alert("Items added successfully");//6
+        return;
+    }
+    Object.keys(errors).forEach(err => {
+        alert("Item ",err," not added. Error: ", errors[err].message);
+    });
+}
+
 //Loading checkout modal
 document.addEventListener('DOMContentLoaded',()=>{
+    fetchOrders();
+        
     const orderItemsModal=document.getElementById('order-items-modal');
     document.getElementById('add-to-order-button').addEventListener('click',function(event){
         if(Object.keys(cart).length===0){
@@ -307,10 +396,36 @@ document.addEventListener('DOMContentLoaded',()=>{
     const NewOrderButton=document.getElementById("new-order-button");
     const addToOrderButton=document.getElementById("order-button");
 
-    addToOrderButton.addEventListener("click",function(event){
-        console.log(cart);
+    addToOrderButton.addEventListener("click",async function(event){
+        // console.log(cart);
+        if(Object.keys(cart).length===0){
+            alert("Add some items to order!!");
+            orderItemsModal.classList.add('hidden');
+            return;
+        }
+        await addItemstoOrders();
+        location.reload();
     });
 
+    NewOrderButton.addEventListener('click',async function(event){
+        try{
+            let options={
+                method:'POST',
+                headers:{
+                    'accept':'text/plain',
+                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                }
+            }
+
+            const response=await fetch("http://localhost:5122/api/OrderServices/OpenAnOrder",options);
+            const data=await response.json();
+            alert("New Order opened Order ID:"+data.orderId);
+            fetchOrders();
+            // addItemstoOrders();
+        }catch(error){
+            console.log("Error: ",error)
+        }
+    })
     cancelButton.addEventListener('click',function(event){
         orderItemsModal.classList.add("hidden");
     });

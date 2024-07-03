@@ -21,7 +21,7 @@ if(!validateCutomerToken(decodedToken)){
 document.addEventListener('DOMContentLoaded',()=>{
 
     //Current Page
-    let currentPageId='menu-page';
+    let currentPageId='orders-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{
@@ -35,6 +35,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
         document.getElementById('profile-page').classList.add('bg-slate-600', 'bg-opacity-75');
         currentPageId='profile-page';
+    });
+
+      //Orders Page
+      document.getElementById('orders-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('orders-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='orders-page';
     });
 
     const logoutBtn = document.getElementById('logout-button');
