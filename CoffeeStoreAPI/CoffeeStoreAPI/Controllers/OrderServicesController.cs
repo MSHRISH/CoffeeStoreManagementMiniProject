@@ -246,5 +246,23 @@ namespace CoffeeStoreAPI.Controllers
                 return BadRequest(new ErrorModel(404, ex.Message));
             }
         }
+
+        [HttpDelete("CloseOrderByCustomer/{orderid}")]
+        [Authorize(Policy = "RequireCustomerRole")]
+        [ProducesResponseType(typeof(OrderDetailsDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<OrderDetailsDTO>> CloseOrderByCustomer(int orderid)
+        {
+            try
+            {
+                int.TryParse(User.FindFirst(ClaimTypes.Name)?.Value, out int parsedUserId);
+                var res = await _orderServices.CloseOrderByCustomer(orderid, parsedUserId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(404, ex.Message));
+            }
+        }
     }
 }

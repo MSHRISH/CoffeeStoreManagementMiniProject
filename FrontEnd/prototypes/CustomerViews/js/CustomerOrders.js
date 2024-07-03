@@ -61,6 +61,33 @@ async function fetchMyOrder(){
             cancelItemButton.className="border-2 px-2 bg-red-500 rounded-lg hover:border-red-700";
             cancelItemButton.innerText="Cancel Item";
 
+
+            cancelItemButton.addEventListener('click',async ()=>{
+                // console.log(orderItem.itemId);
+                try{
+                    const requestBody={orderItemId:orderItem.orderItemId};
+                    let options={
+                        method: 'DELETE',
+                        headers:{
+                            'accept':'text/plain',
+                            'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                            ,'Content-Type':'application/json'
+                        }
+                        ,body: JSON.stringify(requestBody)
+                    }
+                    const apiURL="http://localhost:5122/api/OrderServices/CancelOrderItemByCustomer"
+                    
+                    const response=await fetch(apiURL,options);
+                    let data=await response.json();
+                    console.log(data);
+                    alert('ItemCancelled');
+                    fetchMyOrder();
+                }catch(error){
+                    console.log("Erro!:",error);
+                }
+
+            });
+
             if(orderItem.cancellationStatus!=="NULL"){
                 cancelItemButton.disabled=true;
                 cancelItemButton.className="border-2 px-2 bg-slate-500 rounded-lg"
@@ -74,6 +101,30 @@ async function fetchMyOrder(){
             itemRow.appendChild(cancelItemButton);
 
             orderItemsList.appendChild(itemRow);
+
+            //Cancell Order By Customer
+            const cancelOrderButton=document.getElementById('cancel-order-button');
+            //CloseOrderButton
+            const closeOrderButton=document.getElementById("close-order-button");
+            
+            if(myOrder.orderStatus!="Open"){
+                cancelOrderButton.disabled=true;
+                cancelOrderButton.className="border-2 px-2 bg-slate-500 rounded-lg"
+                closeOrderButton.disabled=true;
+                closeOrderButton.className="border-2 px-2 bg-slate-500 rounded-lg"
+                
+            }
+            else{
+                cancelOrderButton.disabled=false;
+                cancelOrderButton.className="border-2 px-2 bg-red-500 rounded-lg";
+                closeOrderButton.disabled=false;
+                closeOrderButton.className="border-2 px-2 bg-red-500 rounded-lg";
+            }
+            
+            
+            
+            
+
         });
     }catch(error){
         console.log("Error",error);
@@ -118,5 +169,60 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         fetchMyOrder();
         document.getElementById("main-container").classList.remove("hidden")
 
+    });
+
+    //CancelOrderButton
+    const cancelOrderButton=document.getElementById('cancel-order-button');
+
+    cancelOrderButton.addEventListener('click',async ()=>{
+        console.log(orderId);
+        try{
+            
+            let options={
+                method: 'DELETE',
+                headers:{
+                    'accept':'text/plain',
+                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                }
+            }
+            const apiURL="http://localhost:5122/api/OrderServices/CancelOrderByCustomer/"+orderId;
+
+            const response=await fetch(apiURL,options);
+            let data=await response.json();
+            console.log(data);
+            alert('OrderCancelled');
+            fetchMyOrder();
+
+        }catch(error){
+            console.log("error! :",error);
+        }
+    });
+
+    //CloseOrderButton
+    const closeOrderButton=document.getElementById("close-order-button");
+
+    closeOrderButton.addEventListener('click',async ()=>{
+        // console.log(orderId);
+
+        try{
+            
+            let options={
+                method: 'DELETE',
+                headers:{
+                    'accept':'text/plain',
+                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                }
+            }
+            const apiURL="http://localhost:5122/api/OrderServices/CloseOrderByCustomer/"+orderId;
+
+            const response=await fetch(apiURL,options);
+            let data=await response.json();
+            console.log(data);
+            alert('Order Closed');
+            fetchMyOrder();
+
+        }catch(error){
+            console.log("error! :",error);
+        }
     });
 });

@@ -1,6 +1,7 @@
 function removeToken(){
     localStorage.removeItem('EmployeeData');
 }
+
 //window.addEventListener('beforeunload', removeToken);
 
 

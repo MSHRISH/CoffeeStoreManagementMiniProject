@@ -334,5 +334,20 @@ namespace CoffeeStoreAPI.Services
             }
             return result ;
         }
+
+        public async Task<OrderDetailsDTO> CloseOrderByCustomer(int orderId, int userId)
+        {
+            var order = await _orderRepository.Get(orderId);
+            if (order == null || order.UserId != userId)
+            {
+                throw new NoSuchOrderFoundExecption();
+            }
+            if (order.OrderStatus != "Open") { 
+                throw new UnableToCancelOrderExecption();
+            }
+            order.OrderStatus = "Closed";
+            order=await _orderRepository.Update(order);
+            return await MapToOrderDetailsDTO(order);
+        }
     }
 }

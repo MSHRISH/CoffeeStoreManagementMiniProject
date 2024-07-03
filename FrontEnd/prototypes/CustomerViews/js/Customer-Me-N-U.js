@@ -343,10 +343,14 @@ async function fetchAddItemAPI(itemId,qty,orderId){
 //Place all order items
 async function addItemstoOrders(){
     const orderId=document.getElementById("select-order-id").value;
+    if(orderId===""){
+        alert("Open a New Order!");
+        return false;
+    }
     let result = confirm("Are you sure you want to add the items to "+orderId,"?");
     if(result===false){
         alert("Process Cancelled!");
-        return;
+        return false;
     }
     let errors={};
     // console.log(orderId);
@@ -371,7 +375,7 @@ async function addItemstoOrders(){
     if(Object.keys(errors).length===0){
         console.log("success") //5
         alert("Items added successfully");//6
-        return;
+        return true;
     }
     Object.keys(errors).forEach(err => {
         alert("Item ",err," not added. Error: ", errors[err].message);
@@ -403,8 +407,13 @@ document.addEventListener('DOMContentLoaded',()=>{
             orderItemsModal.classList.add('hidden');
             return;
         }
-        await addItemstoOrders();
-        location.reload();
+        
+        const res=await addItemstoOrders();
+        if(res){
+            location.reload();
+        }
+        
+
     });
 
     NewOrderButton.addEventListener('click',async function(event){
