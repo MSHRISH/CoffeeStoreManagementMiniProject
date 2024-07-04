@@ -2,7 +2,7 @@ function removeToken(){
     localStorage.removeItem('EmployeeData');
 }
 
-//window.addEventListener('beforeunload', removeToken);
+window.addEventListener('beforeunload', removeToken);
 
 
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     //Current Page
-    let currentPageId='profile-page';
+    let currentPageId='orders-page';
 
     //Menu page
     document.getElementById('menu-page').addEventListener('click',()=>{
@@ -115,6 +115,19 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.getElementById('additem-page').classList.add('bg-slate-600', 'bg-opacity-75');
         currentPageId='additem-page';
     });
+     document.getElementById("additem-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('additem-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='additem-page';
+    });
+
+    //Orders Page
+    document.getElementById("orders-page").addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('orders-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='orders-page';
+    });
+
 
 
     //Logout button

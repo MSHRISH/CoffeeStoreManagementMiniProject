@@ -1,16 +1,19 @@
 let order=[]
 let orderId=0
+let orderItemId=0;
+const Employee = JSON.parse(localStorage.getItem('EmployeeData'));
+const decodedToken=jwtRipOpen(Employee.token);
 
 //Fetch MyOrder
-async function fetchMyOrder(){
+async function fetchOrder(){
     try{
         let options={
             headers:{
                 'accept':'text/plain',
-                'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                'Authorization':'Bearer '+JSON.parse(localStorage.getItem("EmployeeData")).token
             }
         }
-        const apiURL="http://localhost:5122/api/OrderServices/GetMyOrderDetails/"+orderId;
+        const apiURL="http://localhost:5122/api/OrderServices/GetOrderById/"+orderId;
         const response=await fetch(apiURL,options);
         let myOrder=await response.json();
         console.log(myOrder);
@@ -40,7 +43,7 @@ async function fetchMyOrder(){
         
         myOrder.orderItems.forEach(orderItem => {
             const itemRow=document.createElement('div');
-            itemRow.className="grid grid-cols-5 gap-2";
+            itemRow.className="grid grid-cols-6 gap-2";
 
             const itemIdSpan=document.createElement('span');
             itemIdSpan.innerText="ItemId: "+orderItem.itemId;
@@ -61,6 +64,33 @@ async function fetchMyOrder(){
             cancelItemButton.className="border-2 px-2 bg-red-500 rounded-lg hover:border-red-700";
             cancelItemButton.innerText="Cancel Item";
 
+            const changeItemStatusButton=document.createElement('button');
+            changeItemStatusButton.className="border-2 px-2 bg-red-500 rounded-lg hover:border-red-700";
+            changeItemStatusButton.innerText="Change Status";
+            
+            //Change Status Modal
+            changeItemStatusButton.addEventListener('click',async ()=>{
+                document.getElementById('ChangeStatus-modal').classList.remove("hidden");
+                console.log(orderItem.orderItemId);
+                orderItemId=orderItem.orderItemId;
+                let status=['Accepted','Preparation','Deleivered']
+                status=status.filter(item=>item!==orderItem.itemStatus);
+
+                const statusSelect=document.getElementById('select-status');
+                statusSelect.innerText="";
+
+                status.forEach(s => {
+                    const statusOption=document.createElement('option');
+                    statusOption.value=s;
+                    statusOption.innerText=s;
+
+                    statusSelect.appendChild(statusOption)
+
+                });
+
+
+            });
+
 
             cancelItemButton.addEventListener('click',async ()=>{
                 // console.log(orderItem.itemId);
@@ -70,28 +100,47 @@ async function fetchMyOrder(){
                         method: 'DELETE',
                         headers:{
                             'accept':'text/plain',
-                            'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                            'Authorization':'Bearer '+JSON.parse(localStorage.getItem("EmployeeData")).token
                             ,'Content-Type':'application/json'
                         }
                         ,body: JSON.stringify(requestBody)
                     }
-                    const apiURL="http://localhost:5122/api/OrderServices/CancelOrderItemByCustomer"
+                    const apiURL="http://localhost:5122/api/OrderServices/CancelOrderItemByStore";
                     
                     const response=await fetch(apiURL,options);
                     let data=await response.json();
                     console.log(data);
                     alert('ItemCancelled');
-                    fetchMyOrder();
+                    fetchOrder();
                 }catch(error){
                     console.log("Erro!:",error);
                 }
 
             });
 
-            if(orderItem.cancellationStatus!=="NULL"|| orderItem.itemStatus==="Deleivered"){
+
+            if(orderItem.cancellationStatus!=="NULL" || orderItem.itemStatus!=="Accepted"){
                 cancelItemButton.disabled=true;
                 cancelItemButton.className="border-2 px-2 bg-slate-500 rounded-lg"
-                console.log("Cancelled");
+                // console.log("Cancelled");
+                // changeItemStatusButton.disabled=true;
+                // changeItemStatusButton.className="border-2 px-2 bg-slate-500 rounded-lg";
+            }
+
+            if(myOrder.orderStatus!="Open" && myOrder.orderStatus!="Closed"){
+                console.log(myOrder.orderStatus);
+                cancelItemButton.disabled=true;
+                cancelItemButton.className="border-2 px-2 bg-slate-500 rounded-lg"
+            }
+
+            if(orderItem.cancellationStatus!=="NULL"){
+                changeItemStatusButton.disabled=true;
+                changeItemStatusButton.className="border-2 px-2 bg-slate-500 rounded-lg";
+            }
+            
+            if(decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]=="Barista"){
+                cancelItemButton.disabled=true;
+                cancelItemButton.className="border-2 px-2 bg-slate-500 rounded-lg";
             }
             
             itemRow.appendChild(itemIdSpan);
@@ -99,37 +148,27 @@ async function fetchMyOrder(){
             itemRow.appendChild(itemStatusSpan);
             itemRow.appendChild(cancellationStatusSpan);
             itemRow.appendChild(cancelItemButton);
+            itemRow.appendChild(changeItemStatusButton);
 
             orderItemsList.appendChild(itemRow);
 
-            //Cancell Order By Customer
+            //Cancell Order By Store
             const cancelOrderButton=document.getElementById('cancel-order-button');
-            //CloseOrderButton
-            const closeOrderButton=document.getElementById("close-order-button");
             
-            if(myOrder.orderStatus!="Open"){
+            if(myOrder.orderStatus!="Open"||decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]==="Barista"){
                 cancelOrderButton.disabled=true;
                 cancelOrderButton.className="border-2 px-2 bg-slate-500 rounded-lg"
-                closeOrderButton.disabled=true;
-                closeOrderButton.className="border-2 px-2 bg-slate-500 rounded-lg"
-                
             }
             else{
                 cancelOrderButton.disabled=false;
                 cancelOrderButton.className="border-2 px-2 bg-red-500 rounded-lg";
-                closeOrderButton.disabled=false;
-                closeOrderButton.className="border-2 px-2 bg-red-500 rounded-lg";
             }
-            
-            
-            
-            
-
         });
     }catch(error){
         console.log("Error",error);
     }
 }
+
 
 document.addEventListener('DOMContentLoaded',async ()=>{
     const orderIdInput=document.getElementById('select-order-id');
@@ -139,11 +178,11 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         let options={
             headers:{
                 'accept':'text/plain',
-                'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                'Authorization':'Bearer '+JSON.parse(localStorage.getItem("EmployeeData")).token
             }
         }
 
-        const response=await fetch('http://localhost:5122/api/OrderServices/GetAllMyOrders',options);
+        const response=await fetch('http://localhost:5122/api/OrderServices/GetAllOrders',options);
         const data=await response.json();
         orders=data;
 
@@ -166,14 +205,69 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         orderId=orderIdInput.value;
         console.log(orderId);
 
-        fetchMyOrder();
+        fetchOrder();
         document.getElementById("main-container").classList.remove("hidden")
 
     });
 
-    //CancelOrderButton
+
+    //Cancel Change Status
+    document.getElementById('cancelBtn').addEventListener('click',()=>{
+        document.getElementById('ChangeStatus-modal').classList.add("hidden");
+    })
+
+
+    //Change Status
+    document.getElementById('confirmChangeStatusBtn').addEventListener('click',async ()=>{
+        console.log(orderItemId);
+        
+        try{
+            let options={
+                method: 'PUT',
+                headers:{
+                    'accept':'text/plain',
+                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("EmployeeData")).token
+                }
+            }
+            
+            let apiUrl="http://localhost:5122/api/OrderServices/"
+            if(document.getElementById('select-status').value==="Accepted"){
+                apiUrl=apiUrl+"AcceptedOrderItem/"+orderItemId;
+            }
+            if(document.getElementById('select-status').value==="Preparation"){
+                apiUrl=apiUrl+"PreparationStartedOrderItem/"+orderItemId;
+            }
+            if(document.getElementById('select-status').value==="Deleivered"){
+                apiUrl=apiUrl+"DeleiveredOrderItem/"+orderItemId;
+                console.log(apiUrl);
+            }
+
+            const response=await fetch(apiUrl,options);
+            const data=await response.json();
+            console.log(data);
+            alert("Item Status Changed");
+            document.getElementById('ChangeStatus-modal').classList.add("hidden");
+            fetchOrder();
+
+        }catch(error){
+            console.log("Error!", error);
+        }
+        
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === document.getElementById('ChangeStatus-modal')) {
+            document.getElementById('ChangeStatus-modal').classList.add("hidden");
+        }
+    });
+
+
+    ////CancelOrderButton
     const cancelOrderButton=document.getElementById('cancel-order-button');
 
+
+
+    
     cancelOrderButton.addEventListener('click',async ()=>{
         console.log(orderId);
         try{
@@ -182,47 +276,20 @@ document.addEventListener('DOMContentLoaded',async ()=>{
                 method: 'DELETE',
                 headers:{
                     'accept':'text/plain',
-                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
+                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("EmployeeData")).token
                 }
             }
-            const apiURL="http://localhost:5122/api/OrderServices/CancelOrderByCustomer/"+orderId;
+            const apiURL="http://localhost:5122/api/OrderServices/CancelOrderByStore/"+orderId;
 
             const response=await fetch(apiURL,options);
             let data=await response.json();
             console.log(data);
             alert('OrderCancelled');
-            fetchMyOrder();
+            fetchOrder();
 
         }catch(error){
             console.log("error! :",error);
         }
     });
 
-    //CloseOrderButton
-    const closeOrderButton=document.getElementById("close-order-button");
-
-    closeOrderButton.addEventListener('click',async ()=>{
-        // console.log(orderId);
-
-        try{
-            
-            let options={
-                method: 'DELETE',
-                headers:{
-                    'accept':'text/plain',
-                    'Authorization':'Bearer '+JSON.parse(localStorage.getItem("CustomerData")).token
-                }
-            }
-            const apiURL="http://localhost:5122/api/OrderServices/CloseOrderByCustomer/"+orderId;
-
-            const response=await fetch(apiURL,options);
-            let data=await response.json();
-            console.log(data);
-            alert('Order Closed');
-            fetchMyOrder();
-
-        }catch(error){
-            console.log("error! :",error);
-        }
-    });
 });

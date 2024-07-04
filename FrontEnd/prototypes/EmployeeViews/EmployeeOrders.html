@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../Global/js/Global.js"></script>
+    <script src="js/EmployeeOrders.js"></script>
+   
+</head>
+<body class="">
+    <div class="">
+        <div class=" w-auto px-2 py-2">
+            <div class="grid grid-cols-12 gap-2">
+                <span class="col-span-2">Order Number:</span>
+                <select name="select-order-id" id="select-order-id" class="ml-2 sm:ml-0 col-span-4 text-center border border-black">
+                                    
+                </select>
+                <button class="bg-[blue] col-span-6 px-2 py-1" type="button" id="get-order-details-button" onclick="">Get Details</button>
+            </div>
+
+            <div class="text-center mt-2" id="prompt">
+                <span>Select order to view Details</span>
+            </div>
+            
+            <div id="main-container" class="hidden w-full flex flex flex-col items-center ">
+                <!-- Order Details -->
+                <div id="order-details-container" class="border-2 flex flex-col items-center m-4 w-fit rounded-lg px-2 py-1 ">
+                    <span>orderId</span>
+                    <span>orderStatus</span>
+                    <span>totalAmount</span>
+                    <span>orderedOn</span>
+                </div>
+                <!-- Order Items -->
+                <span>Items:</span>
+                <div class=" flex flex-col items-center m-2 w-fit rounded-lg px-2 py-1 overflow-auto max-h-64">
+                    <div id="order-items-list">
+                        <div class="grid grid-cols-6 gap-2">
+                            <span>Item name/id:</span>
+                            <span class="font-bold">Item QTY</span>
+                            <span class="text-blue-900">itemStatus</span>
+                            <span class="text-red-500 overflow-auto">cancellationStatus</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Change Status</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <span>Item name/id:</span>
+                            <span>Item QTY</span>
+                            <button class="border-2 px-2 bg-red-500 rounded-lg">Cancel Item</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancel Order -->
+                 <div class="m-2 ">
+                    <button id="cancel-order-button" class="border-2 bg-red-500 rounded-lg px-2 py-1">Cancel Order</button>
+                </div>
+            </div>
+            <!-- Change Status Modal -->
+        <div id="ChangeStatus-modal" class="hidden bg-[grey] bg-opacity-70 h-dvh w-dvh fixed inset-0 flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg max-w-sm w-full p-6">
+              <h2 class="text-xl font-semibold mb-4">Change Status</h2>
+              <div class="">
+                <select class="border-2" id="select-status">
+                    <option>Accepted</option>
+                    <option>Preparing</option>
+                    <option>Deleivered</option>
+                </select>
+              </div>
+              <div class="flex justify-end space-x-4">
+                  <button id="cancelBtn" class="px-4 py-2 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">Cancel</button>
+                  <button id="confirmChangeStatusBtn" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">Change</button>
+              </div>
+          </div>
+    </div>
+        </div>
+    </div>
+</body>
+</html>
