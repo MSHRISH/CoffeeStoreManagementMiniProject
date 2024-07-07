@@ -3,12 +3,23 @@
   "WorkspaceRootPath": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\controllers\\orderservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\controllers\\orderservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\models\\dtos\\orderitemdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\models\\dtos\\orderitemdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\AppData\\Local\\Temp\\.vsdbgsrc\\d92f560fa80d00774e62afd00e9ae98db1447562bd2afcc59566478acba65ced\\OrderServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\controllers\\orderservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\controllers\\orderservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|solutionrelative:coffeestoreapi\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC83FD51-545C-48E2-9E67-838A5F2A7AA2}|CoffeeStoreAPI\\CoffeeStoreAPI.csproj|c:\\presidio\\coffeestoremanagementminiproject\\coffeestoreapi\\coffeestoreapi\\iterfaces\\iorderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,19 +45,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderServices.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\AppData\\Local\\Temp\\.vsdbgsrc\\d92f560fa80d00774e62afd00e9ae98db1447562bd2afcc59566478acba65ced\\OrderServices.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Users\\VC\\AppData\\Local\\Temp\\.vsdbgsrc\\d92f560fa80d00774e62afd00e9ae98db1447562bd2afcc59566478acba65ced\\OrderServices.cs",
+              "ToolTip": "C:\\Users\\VC\\AppData\\Local\\Temp\\.vsdbgsrc\\d92f560fa80d00774e62afd00e9ae98db1447562bd2afcc59566478acba65ced\\OrderServices.cs [Read Only]",
+              "RelativeToolTip": "..\\..\\..\\Users\\VC\\AppData\\Local\\Temp\\.vsdbgsrc\\d92f560fa80d00774e62afd00e9ae98db1447562bd2afcc59566478acba65ced\\OrderServices.cs [Read Only]",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAkwGwAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:53:02.01Z",
+              "EditorCaption": " [Read Only]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "OrderItemDetailsDTO.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\DTOs\\OrderItemDetailsDTO.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Models\\DTOs\\OrderItemDetailsDTO.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\DTOs\\OrderItemDetailsDTO.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Models\\DTOs\\OrderItemDetailsDTO.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAD4vwsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:07:12.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\OrderItem.cs",
+              "RelativeDocumentMoniker": "CoffeeStoreAPI\\Models\\OrderItem.cs",
+              "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Models\\OrderItem.cs",
+              "RelativeToolTip": "CoffeeStoreAPI\\Models\\OrderItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:05:03.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "OrderServicesController.cs",
               "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Controllers\\OrderServicesController.cs",
               "RelativeDocumentMoniker": "CoffeeStoreAPI\\Controllers\\OrderServicesController.cs",
               "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Controllers\\OrderServicesController.cs",
               "RelativeToolTip": "CoffeeStoreAPI\\Controllers\\OrderServicesController.cs",
-              "ViewState": "AQIAAJ8AAAAAAAAAAAAuwKsAAABEAAAA",
+              "ViewState": "AQIAAJ4AAAAAAAAAAAAgwKoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T11:22:11.717Z"
+              "WhenOpened": "2024-07-03T11:22:11.717Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "IOrderServices.cs",
               "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Iterfaces\\IOrderServices.cs",
               "RelativeDocumentMoniker": "CoffeeStoreAPI\\Iterfaces\\IOrderServices.cs",
@@ -58,13 +109,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "OrderServices.cs",
               "DocumentMoniker": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Services\\OrderServices.cs",
               "RelativeDocumentMoniker": "CoffeeStoreAPI\\Services\\OrderServices.cs",
               "ToolTip": "C:\\Presidio\\CoffeeStoreManagementMiniProject\\CoffeeStoreAPI\\CoffeeStoreAPI\\Services\\OrderServices.cs",
               "RelativeToolTip": "CoffeeStoreAPI\\Services\\OrderServices.cs",
-              "ViewState": "AQIAAKoAAAAAAAAAAAAgwKQAAAAxAAAA",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAkwHoAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-02T12:58:19.329Z",
               "EditorCaption": ""

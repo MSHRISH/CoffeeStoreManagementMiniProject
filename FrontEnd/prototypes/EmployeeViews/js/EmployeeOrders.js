@@ -46,7 +46,7 @@ async function fetchOrder(){
             itemRow.className="grid grid-cols-6 gap-2";
 
             const itemIdSpan=document.createElement('span');
-            itemIdSpan.innerText="ItemId: "+orderItem.itemId;
+            itemIdSpan.innerText=orderItem.itemName;
 
             const itemQtySpan=document.createElement('span');
             itemQtySpan.className="font-bold";

@@ -102,10 +102,14 @@ namespace CoffeeStoreAPI.Services
         private async Task<List<OrderItemDetailsDTO>> GetAllOrderItems(int orderid)
         {
             var orderitems=await _orderItemRepository.GetAll();
-            
+
+            var items=await _itemRepository.GetAll();
+
+
             var orderItemsDTO=from orderitem in orderitems
                               where orderitem.OrderId==orderid
                               select MapToOrderItemDetailsDTO(orderitem);
+
             return orderItemsDTO.ToList();
         }
         private OrderItemDetailsDTO MapToOrderItemDetailsDTO(OrderItem orderItem)
@@ -116,6 +120,7 @@ namespace CoffeeStoreAPI.Services
             orderItemDTO.Quantity = orderItem.Quantity;
             orderItemDTO.ItemStatus = orderItem.ItemStatus;
             orderItemDTO.CancellationStatus = orderItem.CancellationStatus;
+            orderItemDTO.ItemName = orderItem.Item.ItemName;    
             return orderItemDTO;
 
         }

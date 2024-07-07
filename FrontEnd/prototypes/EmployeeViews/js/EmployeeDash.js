@@ -58,14 +58,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     //Current Page
-    let currentPageId='orders-page';
+    let currentPageId='profile-page';
 
-    //Menu page
-    document.getElementById('menu-page').addEventListener('click',()=>{
-        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
-        document.getElementById('menu-page').classList.add('bg-slate-600', 'bg-opacity-75');
-        currentPageId='menu-page';
-    });
+   
 
     //Profile Page
     document.getElementById('profile-page').addEventListener('click',()=>{
@@ -115,10 +110,26 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.getElementById('additem-page').classList.add('bg-slate-600', 'bg-opacity-75');
         currentPageId='additem-page';
     });
+
+    //Additems Page
      document.getElementById("additem-page").addEventListener('click',()=>{
         document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
         document.getElementById('additem-page').classList.add('bg-slate-600', 'bg-opacity-75');
         currentPageId='additem-page';
+    });
+
+      //Items page
+      document.getElementById('items-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('items-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='items-page';
+    });
+
+    //ItemStaus Page
+    document.getElementById('itemStatus-page').addEventListener('click',()=>{
+        document.getElementById(currentPageId).classList.remove('bg-slate-600', 'bg-opacity-75');
+        document.getElementById('itemStatus-page').classList.add('bg-slate-600', 'bg-opacity-75');
+        currentPageId='itemStatus-page';
     });
 
     //Orders Page

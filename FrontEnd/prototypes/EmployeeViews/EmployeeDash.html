@@ -34,7 +34,7 @@
  
     <div class="grid grid-cols-12 h-screen">
         <!-- SideBar -->
-        <div id="sidebar" class="hidden h-screen lg:block bg-red-500 lg:col-span-2 flex flex-col justify-top  py-2">
+        <div id="sidebar" class="hidden h-full lg:block bg-red-500 lg:col-span-2 flex flex-col justify-top  py-2">
             <!-- Title Bar -->
             <div class="flex items-center px-2 py-2" id="title-bar">
                 <i class="bi bi-cup-hot px-2 py-1 bg-red-500 rounded-md"></i>
@@ -52,40 +52,44 @@
                     <span class="text-[15px] ml-4 text-gray-200">Profile</span></a>
                 </div>
                 <div id="addemployee-page" class="p-2.5 mt-2  flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="addEmployee.html " target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="addEmployee.html " target="content-display"><i class="bi bi-person-plus-fill"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Add Employee</span></a>
                 </div>
-                <div id="menu-page" class="p-2.5 mt-2 hidden flex items-center rounded-md px-4 hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="profile.html" target="content-display"><span class="material-symbols-outlined ">menu_book</span>
-                    <span class="text-[15px] ml-2 text-gray-200">Me-N-U</span></a>
-                </div>
                 <div id="customer-page" class="p-2.5 mt-2 flex  items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="customer.html" target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="customer.html" target="content-display"><i class="bi bi-person-lines-fill"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Customers</span></a>
                 </div>
                 <div id="manager-page" class="p-2.5 mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="manager.html" target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="manager.html" target="content-display"><i class="bi bi-person-lines-fill"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Managers</span></a>
                 </div>
                 <div id="barista-page" class="p-2.5 mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="barista.html" target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="barista.html" target="content-display"><i class="bi bi-person-lines-fill"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Barista</span></a>
                 </div>
                 <div id="additem-page" class="p-2.5 mt-2  flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="additem.html" target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="additem.html" target="content-display"><i class="bi bi-plus-circle-fill"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Add Item</span></a>
                 </div>
+                <div id="items-page" class="p-2.5 mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
+                    <a href="Items.html" target="content-display"><i class="bi bi-list"></i></span>
+                    <span class="text-[15px] ml-4 text-gray-200">All Items</span></a>
+                </div>
+                <div id="itemStatus-page" class="p-2.5 mt-2 bg-slate-600  bg-opacity-75 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
+                    <a href="ItemStatus.html" target="content-display"><i class="bi bi-plus-slash-minus"></i>
+                    <span class="text-[15px] ml-4 text-gray-200">Change Item Status</span></a>
+                </div>
                 <div id="changestatus-page" class="p-2.5 mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="changeStatus.html" target="content-display"><i class="bi bi-person-circle"></i>
+                    <a href="changeStatus.html" target="content-display"><i class="bi bi-plus-slash-minus"></i>
                     <span class="text-[15px] ml-4 text-gray-200">Change User Status</span></a>
                 </div>
-                <div id="orders-page" class="p-2.5 bg-slate-600  bg-opacity-75 mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
-                    <a href="EmployeeOrders.html" target="content-display"><i class="bi bi-person-circle"></i>
+                <div id="orders-page" class="p-2.5  mt-2 flex items-center rounded-md px-4   hover:bg-slate-600 hover:bg-opacity-75">
+                    <a href="EmployeeOrders.html" target="content-display"><span class=""><i class="bi bi-list"></i></span>
                     <span class="text-[15px] ml-4 text-gray-200">Orders</span></a>
                 </div>
                 <hr class="mx-2 text-gray-600">
                 <!-- Logout Button -->
-                <div   id="logout-button" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-slate-600 hover:bg-opacity-75">
+                <div   id="logout-button" class="p-2.5  flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-slate-600 hover:bg-opacity-75">
                     <button  type="button">
                       <i class="bi bi-box-arrow-in-right"></i>
                       <span class="text-[15px] ml-4 text-gray-200">Logout</span>
@@ -96,7 +100,7 @@
 
         <!-- Content -->
         <div id="content" class="col-span-12 lg:col-span-10 ">
-            <iframe name="content-display" src="EmployeeOrders.html" class="h-full w-full mt-[68px] lg:mt-0"></iframe>
+            <iframe name="content-display" src="ItemStatus.html" class="h-full w-full mt-[68px] lg:mt-0"></iframe>
         </div>
         
         <!-- Logout Modal -->

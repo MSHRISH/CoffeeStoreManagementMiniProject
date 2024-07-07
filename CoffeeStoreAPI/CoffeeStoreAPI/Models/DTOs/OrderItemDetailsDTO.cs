@@ -7,5 +7,7 @@
         public string ItemStatus { get; set; }
         public string CancellationStatus { get; set; }
         public int Quantity { get; set; }
+
+        public string ItemName { get; set; } = string.Empty;
     }
 }

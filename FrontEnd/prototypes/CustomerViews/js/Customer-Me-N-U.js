@@ -11,7 +11,7 @@ fetchItemTypes()
 
 async function fetchMenu(){
     try{
-        const response = await fetch('http://localhost:5122/api/ItemServices/GetAllItems');
+        const response = await fetch('http://localhost:5122/api/ItemServices/GetAllAvailableItems');
         const data = await response.json();
         menu=data;
         menu=sortItems(menu);
